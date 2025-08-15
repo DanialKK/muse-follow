@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css">
+    
+</head>
+<body class="overflow-hidden relative w-screen h-screen">
+    <header class="flex relative z-10 justify-center items-center px-28 py-6 w-full backdrop-blur-[10px] bg-zinc-800 bg-opacity-80 max-md:px-6 max-md:py-4 max-sm:px-4 max-sm:py-3" >
+        <div class="flex justify-between items-center w-full max-w-[1200px]">
+            <div class="flex gap-24 items-center max-md:gap-10 max-sm:gap-5">
+                <div class="flex gap-2 items-center">
+                    <svg width="112" height="42" viewBox="0 0 112 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                        <text fill="white" font-family="Public Sans" font-size="36" font-weight="900">
+                            <tspan x="34.7031" y="34.05">VRS</tspan>
+                        </text>
+                        <defs>
+                            <linearGradient id="paint0_linear" x1="1.92829" y1="25.5711" x2="20.214" y2="25.5711" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#E1A529"></stop>
+                                <stop offset="0.51" stop-color="#F87900"></stop>
+                                <stop offset="1" stop-color="#A963FF"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint1_linear" x1="0.643252" y1="30.7427" x2="11.0513" y2="30.7427" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#A963FF"></stop>
+                                <stop offset="0.52" stop-color="#F87900"></stop>
+                                <stop offset="1" stop-color="#E1A529"></stop>
+                            </linearGradient>
+                            <linearGradient id="paint2_linear" x1="0.642578" y1="20.9999" x2="28.0712" y2="20.9999" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#A963FF"></stop>
+                                <stop offset="0.52" stop-color="#F87900"></stop>
+                                <stop offset="1" stop-color="#E1A529"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path d="M18.9283 34.7139H13.214C13.2167 33.0625 12.893 31.4268 12.2615 29.9009C11.6299 28.375 10.703 26.989 9.53401 25.8225C8.36622 24.6553 6.97994 23.7295 5.45434 23.0981C3.92873 22.4667 2.29369 22.142 0.642578 22.1425V16.4282C3.04436 16.4257 5.42302 16.8973 7.64211 17.8161C9.86119 18.735 11.877 20.0829 13.574 21.7825C15.2744 23.4789 16.6228 25.4947 17.5417 27.7139C18.4606 29.9331 18.9318 32.312 18.9283 34.7139Z" fill="url(#paint0_linear)"></path>
+                        <path d="M8.64268 30.7427C8.6351 31.8035 8.20641 32.818 7.45091 33.5627C6.6954 34.3075 5.67497 34.7217 4.61411 34.7141C3.55324 34.7065 2.53884 34.2778 1.79405 33.5223C1.04926 32.7668 0.635103 31.7464 0.64268 30.6855C0.660313 29.6315 1.09336 28.627 1.84765 27.8905C2.60194 27.154 3.61649 26.745 4.67069 26.7525C5.72489 26.7601 6.7335 27.1835 7.47719 27.9307C8.22089 28.6779 8.64011 29.6885 8.64268 30.7427Z" fill="url(#paint1_linear)"></path>
+                        <path d="M28.0712 34.7142H22.3746C22.3791 31.8638 21.8215 29.0405 20.7337 26.4059C19.6459 23.7712 18.0493 21.3769 16.0352 19.3599C14.0295 17.3427 11.6446 15.7423 9.01773 14.6507C6.39088 13.5592 3.57404 12.9982 0.729435 12.9999H0.642578V7.28566H0.729435C4.32272 7.28214 7.88112 7.99029 11.1993 9.36926C14.5174 10.7482 17.5296 12.7707 20.062 15.3199C22.6073 17.8668 24.6249 20.8909 25.9993 24.219C27.3736 27.547 28.0777 31.1136 28.0712 34.7142Z" fill="url(#paint2_linear)"></path>
+                    </svg>
+                </div>
+                <nav class="flex gap-4 items-center max-sm:hidden" id="navigation">
+                    <!-- Navigation items will be populated by JavaScript -->
+                </nav>
+            </div>
+            <div class="flex gap-8 items-center max-md:gap-4">
+                <div class="flex gap-2 items-center px-4 py-3.5 rounded-lg border border-purple-900 border-solid w-[340px] max-md:w-[280px] max-sm:w-[200px]">
+                    <svg width="18" height="18" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+                        <path d="M3.31732 17.2689L6.14184 14.333C7.30249 15.2737 8.78573 15.8279 10.3927 15.7968C14.0108 15.7268 16.897 12.7267 16.8271 9.10864C16.7571 5.49056 13.757 2.60428 10.1389 2.67424C6.52085 2.74421 3.63456 5.74432 3.70453 9.3624C3.7356 10.9693 4.34671 12.4301 5.33162 13.5535L2.5071 16.4894C2.39974 16.601 2.34703 16.746 2.34982 16.89C2.3526 17.034 2.41012 17.1769 2.52247 17.2843C2.74568 17.4997 3.10186 17.4928 3.31732 17.2689ZM10.1607 3.79903C13.1586 3.74106 15.6443 6.13245 15.7023 9.13039C15.7603 12.1283 13.3689 14.614 10.3709 14.672C7.37299 14.73 4.88729 12.3386 4.82932 9.34065C4.77135 6.34271 7.16273 3.85701 10.1607 3.79903Z" fill="#FBF2FC"></path>
+                    </svg>
+                    <input class="search-input w-full text-base text-fuchsia-50 border-none bg-transparent outline-none" type="text" placeholder="Type to search" aria-label="Search videos and content" id="searchInput">
+                </div>
+                <div class="flex gap-4 items-center">
+                    <button class="notification-btn p-1 rounded transition-all cursor-pointer border-none duration-200 ease-in-out bg-transparent" aria-label="View notifications" tabindex="0">
+                        <svg width="32" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.357 29C15.0397 29 13.8557 28.316 13.1864 27.1707C12.909 26.6933 13.069 26.0813 13.5464 25.8027C14.021 25.5253 14.6344 25.6853 14.9144 26.1627C15.5264 27.212 17.1877 27.212 17.7997 26.1627C18.0784 25.6853 18.6917 25.5253 19.1677 25.8027C19.645 26.08 19.8064 26.6933 19.5277 27.1707C18.8584 28.316 17.6744 29 16.357 29ZM27.9237 24.4333C28.0904 24.0867 28.0437 23.676 27.805 23.376C27.7797 23.3453 25.3504 20.252 25.3504 16.6667V11.9933C25.3504 7.03466 21.3157 3 16.357 3C11.3984 3 7.3637 7.03466 7.3637 11.9933V16.6667C7.3637 20.252 4.93438 23.3453 4.90904 23.376C4.67038 23.676 4.6237 24.088 4.79037 24.4333C4.95704 24.7787 5.30637 25 5.69037 25H27.0237C27.4077 25 27.757 24.7787 27.9237 24.4333ZM9.3637 16.6667V11.9933C9.3637 8.13733 12.501 5 16.357 5C20.213 5 23.3504 8.13733 23.3504 11.9933V16.6667C23.3504 19.248 24.3504 21.544 25.1744 23H7.53838C8.36371 21.544 9.3637 19.248 9.3637 16.6667Z" fill="#E8E7EB"></path>
+                        </svg>
+                    </button>
+                    <button class="profile-btn relative p-0 rounded-full transition-all cursor-pointer border-none duration-200 ease-in-out bg-transparent" aria-label="User profile menu" tabindex="0">
+                        <div class="w-8 h-8 text-xl text-gray-200 bg-orange-600 rounded-full flex items-center justify-center">
+                            A
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex justify-center items-center p-10 w-full h-[calc(100vh_-_88px)] max-md:flex-col max-md:p-5 max-sm:p-4">
+        <section class="mr-10 w-[400px] max-md:mb-5 max-md:w-full max-md:text-center">
+            <h1 class="mb-4 text-2xl font-semibold text-center text-white capitalize">
+                Watch This Video
+            </h1>
+            <p class="text-lg font-light leading-snug text-center text-white capitalize">
+                This is a placeholder for a video with custom cursor. When user hover on it, he or she will see the interaction type following the cursor.
+            </p>
+        </section>
+
+        <section class="overflow-hidden relative bg-black rounded-3xl h-[338px] w-[600px] max-md:w-full max-md:h-auto max-md:aspect-[16/9] max-md:max-w-[600px]">
+            <img alt="Video thumbnail showing musician playing acoustic guitar" src="https://images.pexels.com/photos/1047796/pexels-photo-1047796.jpeg" class="object-cover overflow-hidden size-full">
+
+            <div class="flex absolute inset-x-0 bottom-0 flex-col gap-5 p-5 backdrop-blur-[0.5px]">
+                <div class="flex justify-center items-center mb-5">
+                    <button class="play-btn flex justify-center items-center w-24 h-24 rounded-full border border-solid transition-all cursor-pointer backdrop-blur-[10px] bg-black bg-opacity-30 border-white border-opacity-20 duration-200 ease-in-out" id="playButton" tabindex="0">
+                        <svg id="playIcon" width="32" height="37" viewBox="0 0 32 37" fill="none">
+                            <path d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z" fill="white"></path>
+                        </svg>
+                        <svg id="pauseIcon" width="32" height="32" viewBox="0 0 32 32" fill="none" style="display: none;">
+                            <rect x="8" y="6" width="6" height="20" fill="white" rx="1"></rect>
+                            <rect x="18" y="6" width="6" height="20" fill="white" rx="1"></rect>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="flex justify-between items-end">
+                  <div>
+                      <h3 class="m-0 text-xs text-white">Cold Little Heart</h3>
+                  </div>
+                  <div class="text-xs font-light text-white">
+                      <span id="currentTime">0:47</span>
+                      /
+                      <span id="totalTime">1:52</span>
+                  </div>
+                </div>
+
+                <div role="progressbar" aria-label="Video progress" class="relative rounded cursor-pointer bg-gray-200 bg-opacity-40 h-[5px]" id="progressBar" tabindex="0">
+                    <div class="h-full rounded bg-zinc-700 duration-100 ease-in-out transition-[width]" id="progressFill"></div>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex gap-1 items-center" id="leftControls">
+                        <!-- Left controls will be populated by JavaScript -->
+                    </div>
+                    <div class="flex gap-1 items-center" id="rightControls">
+                        <!-- Right controls will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div id="follower">
+    <img src="./MC.svg"  width="60" height="60">
+    </div>
+    <script src="./scripts.js"></script>
+</body>
+</html>
