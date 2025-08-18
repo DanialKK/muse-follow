@@ -1,0 +1,377 @@
+.macbook-air-dev {
+    background-color: #1c0c32;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    width: 100vw;
+  }
+  
+  .macbook-air-dev .div {
+    background-color: #1c0c32;
+    width: 1280px;
+    height: 832px;
+    position: relative;
+  }
+  
+  .macbook-air-dev .player-controllers {
+    display: flex;
+    flex-direction: column;
+    width: 816px;
+    height: 459px;
+    align-items: center;
+    justify-content: center;
+    gap: 8.16px;
+    padding: 8.16px 20.4px;
+    position: absolute;
+    top: 232px;
+    left: 440px;
+    border-radius: 20.4px;
+    backdrop-filter: blur(0.51px) brightness(100%);
+    -webkit-backdrop-filter: blur(0.51px) brightness(100%);
+    background: linear-gradient(
+      180deg,
+      rgba(102, 102, 102, 0) 0%,
+      rgba(0, 0, 0, 0.32) 100%
+    );
+  }
+  
+  .macbook-air-dev .PLAY {
+    position: relative;
+    width: 98px;
+    height: 98px;
+  }
+  
+  .macbook-air-dev .info {
+    display: flex;
+    width: 775px;
+    align-items: flex-end;
+    justify-content: space-between;
+    position: absolute;
+    top: 390px;
+    left: 20px;
+  }
+  
+  .macbook-air-dev .titles-episodes {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4.08px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .macbook-air-dev .title-here {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.51px;
+    margin-left: -1.00px;
+    -webkit-text-stroke: 1px #000000;
+    font-family: "Helvetica Neue-Regular", Helvetica;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 12.2px;
+    letter-spacing: 0;
+    line-height: 12.2px;
+    white-space: nowrap;
+  }
+  
+  .macbook-air-dev .time {
+    position: relative;
+    width: fit-content;
+    font-family: "Helvetica Neue-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 8.2px;
+    letter-spacing: 0;
+    line-height: 8.2px;
+    white-space: nowrap;
+  }
+  
+  .macbook-air-dev .progress {
+    position: absolute;
+    width: 775px;
+    height: 5px;
+    top: 413px;
+    left: 20px;
+    background-color: #ebebeb66;
+    border-radius: 3px;
+  }
+  
+  .macbook-air-dev .rectangle {
+    width: 14px;
+    height: 5px;
+    background-color: #464646;
+    border-radius: 3px 0px 0px 3px;
+  }
+  
+  .macbook-air-dev .controllers {
+    display: flex;
+    width: 775px;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 426px;
+    left: 21px;
+  }
+  
+  .macbook-air-dev .div-2 {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 4.08px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .macbook-air-dev .web-buttons {
+    position: relative;
+    width: 24.48px;
+    height: 24.48px;
+  }
+  
+  .macbook-air-dev .icon-frame {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    top: 7px;
+    left: 7px;
+  }
+  
+  .macbook-air-dev .ellipse {
+    top: 1px;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: 4px;
+    background-color: #ffffff;
+    border-radius: 1.02px;
+  }
+  
+  .macbook-air-dev .ellipse-2 {
+    top: 4px;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: 4px;
+    background-color: #ffffff;
+    border-radius: 1.02px;
+  }
+  
+  .macbook-air-dev .ellipse-3 {
+    top: 8px;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    left: 4px;
+    background-color: #ffffff;
+    border-radius: 1.02px;
+  }
+  
+  .macbook-air-dev .cursor-mouse {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 239px;
+    left: 154px;
+  }
+  
+  .macbook-air-dev .text {
+    position: absolute;
+    width: 400px;
+    height: 140px;
+    top: 392px;
+    left: 24px;
+  }
+  
+  .macbook-air-dev .frame {
+    display: inline-flex;
+    height: 27px;
+    top: 0;
+    left: 94px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 4px;
+    position: absolute;
+  }
+  
+  .macbook-air-dev .watch-this-video {
+    position: relative;
+    width: 204px;
+    margin-top: -6.00px;
+    margin-bottom: -4.00px;
+    font-family: "Inter-SemiBold", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .macbook-air-dev .this-is-a-wrapper {
+    display: flex;
+    width: 396px;
+    top: 35px;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 4px;
+    position: absolute;
+  }
+  
+  .macbook-air-dev .this-is-a {
+    position: relative;
+    width: 383px;
+    margin-top: -1.00px;
+    font-family: "Inter-Light", Helvetica;
+    font-weight: 300;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .macbook-air-dev .header {
+    position: absolute;
+    width: 1280px;
+    height: 88px;
+    top: 0;
+    left: 0;
+  }
+  /* Original CSS code should be injected here */
+  
+  /* Enhanced accessibility and interaction styles */
+  .macbook-air-dev .PLAY {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .macbook-air-dev .PLAY:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  
+  .macbook-air-dev .PLAY:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 4px;
+  }
+  
+  .macbook-air-dev .PLAY img {
+    width: 98px;
+    height: 98px;
+    display: block;
+  }
+  
+  .macbook-air-dev .web-buttons {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .macbook-air-dev .web-buttons:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+  .macbook-air-dev .web-buttons:focus {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+  }
+  
+  .macbook-air-dev .web-buttons img {
+    width: 24.48px;
+    height: 24.48px;
+    display: block;
+  }
+  
+  .macbook-air-dev .progress {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  
+  .macbook-air-dev .progress:hover {
+    opacity: 0.8;
+  }
+  
+  .macbook-air-dev .progress:focus-within {
+    outline: 2px solid #4a90e2;
+    outline-offset: 2px;
+  }
+  
+  .macbook-air-dev .title-here {
+    margin: 0;
+    font-size: 12.2px;
+  }
+  
+  .macbook-air-dev .watch-this-video {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1280px) {
+    .macbook-air-dev .div {
+      width: 100%;
+      max-width: 1280px;
+    }
+  
+    .macbook-air-dev .header img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 856px) {
+    .macbook-air-dev .player-controllers {
+      width: calc(100% - 40px);
+      left: 20px;
+      right: 20px;
+    }
+  
+    .macbook-air-dev .info,
+    .macbook-air-dev .progress,
+    .macbook-air-dev .controllers {
+      width: calc(100% - 40px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .macbook-air-dev .text {
+      width: calc(100% - 48px);
+      left: 24px;
+      right: 24px;
+    }
+  
+    .macbook-air-dev .this-is-a-wrapper {
+      width: 100%;
+    }
+  
+    .macbook-air-dev .this-is-a {
+      width: 100%;
+    }
+  
+    .macbook-air-dev .controllers .div-2 {
+      gap: 2px;
+    }
+  
+    .macbook-air-dev .web-buttons {
+      width: 20px;
+      height: 20px;
+    }
+  
+    .macbook-air-dev .web-buttons img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
