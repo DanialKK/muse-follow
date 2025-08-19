@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Figma + SVGs — Header glass full-width</title>
+  <style>
+    :root{
+      --canvas-w:1280px; --canvas-h:832px;
+      --video-w:816px; --video-h:459px;
+      --play-bg-size:96px; --icon-frame-size:58px;
+      --play-icon-w:32px; --play-icon-h:37px;
+      --pause-icon-w:32px; --pause-icon-h:37px;
+      --progress-h:5px; --small-icon:24px; --header-icon:32px;
+    }
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,"Public Sans";background:#0f0716;display:flex;align-items:center;justify-content:center}
+    .canvas{width:var(--canvas-w);height:var(--canvas-h);position:relative;background:#1C0C32;overflow:hidden;box-sizing:border-box}
+
+    /* ===== HEADER — now glassy & full-width ===== */
+    .header{
+      position:absolute;
+      left:0;
+      right:0;
+      top:0;
+      height:64px; /* ثابت نگه داشتن ارتفاع هدر */
+      box-sizing:border-box;
+      /* glass look */
+      background: rgba(45,40,51,0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      display:flex;
+      align-items:center;
+      z-index:50;
+    }
+    /* header-inner now stretches but uses small side padding so icons are close to edges */
+    .header-inner{
+      width:100%;
+      padding:0 24px; /* ← اینجا کنترلت؛ اگه می‌خوای کاملا بدون فاصله بزن 0 */
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      box-sizing:border-box;
+    }
+
+    /* Logo + nav */
+    .logo{display:flex;align-items:center;gap:12px}
+    .nav-items{display:flex;gap:16px;align-items:center}
+    .nav-item{padding:8px 12px;color:#E8E7EB;font-weight:700;font-size:15px}
+
+    /* search and icons (kept compact) */
+    .searchbox{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;width:320px;box-sizing:border-box;outline:1px solid rgba(82,53,112,0.9);background:transparent;color:#FBF2FC}
+    .searchbox input{flex:1;background:transparent;border:0;color:#FBF2FC;outline:none;font-size:15px}
+    .header-icons{display:flex;align-items:center;gap:12px}
+    .icon-32{width:var(--header-icon);height:var(--header-icon);display:inline-flex;align-items:center;justify-content:center}
+    .profile-badge{width:32px;height:32px;border-radius:9999px;background:#FF5418;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+
+    /* rest of page kept from previous version */
+    .side-text{position:absolute;left:24px;top:392px;width:400px;height:140px;color:#fff;text-align:center;box-sizing:border-box}
+    .side-text h2{margin:0;font-size:24px;font-weight:600;text-transform:capitalize}
+    .side-text p{margin:35px auto 0;width:383px;font-size:18px;font-weight:300;line-height:1.2;color:#fff;text-transform:capitalize;word-wrap: break-word}
+
+    .video-wrapper{position:absolute;left:440px;top:232px;width:var(--video-w);height:var(--video-h);border-radius:20.4px;overflow:hidden;background:#000;box-sizing:border-box}
+    .video-thumb{width:100%;height:100%;object-fit:cover;display:block}
+
+    .play-bg{ position:absolute; left:50%; top:50%; width:var(--play-bg-size); height:var(--play-bg-size);
+      transform:translate(-50%,-50%); border-radius:9999px; display:flex;align-items:center;justify-content:center;
+      background:rgba(0,0,0,0.28); outline:1px solid rgba(255,255,255,0.20); z-index:8;
+    }
+    .icon-frame{width:var(--icon-frame-size);height:var(--icon-frame-size);display:flex;align-items:center;justify-content:center}
+    .icon-frame svg{display:block}
+
+    .player-controllers{ position:absolute; left:0; right:0; bottom:0; padding:18px 24px; box-sizing:border-box;
+      background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.32) 100%); backdrop-filter: blur(0.51px); z-index:6;
+    }
+
+    .progress-wrap{width:calc(100% - 48px);height:var(--progress-h);background:rgba(255,255,255,0.06);border-radius:999px;margin:8px auto 6px;overflow:hidden}
+    .progress-fill{height:100%;width:20%;background:#3f3f46;transition:width .12s linear}
+
+    .video-meta{display:flex;justify-content:space-between;align-items:flex-end;color:#fff;font-size:12px;width:calc(100% - 48px);margin:0 auto;box-sizing:border-box}
+    .controls-row{display:flex;justify-content:space-between;align-items:center;width:calc(100% - 48px);margin:6px auto 0;box-sizing:border-box}
+    .left-controls,.right-controls{display:flex;gap:8px;align-items:center}
+    .small-icon{width:var(--small-icon);height:var(--small-icon);display:inline-flex;align-items:center;justify-content:center}
+
+    @media (max-width:1100px){ .canvas{transform:scale(0.9);transform-origin:center} }
+    @media (max-width:900px){ .canvas{transform:scale(0.75)} }
+  </style>
+</head>
+<body>
+  <div class="canvas" role="main" aria-label="Figma canvas 1280x832">
+
+    <!-- HEADER (glass, full-width) -->
+    <header class="header" role="banner" aria-label="Header — glass">
+      <div class="header-inner">
+        <div style="display:flex;align-items:center;gap:24px;">
+          <div class="logo" aria-hidden="false">
+            <!-- SVG لوگو (از index.html) -->
+            <svg width="112" height="42" viewBox="0 0 112 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <text fill="white" font-family="Public Sans" font-size="36" font-weight="900">
+                <tspan x="34.7031" y="34.05">VRS</tspan>
+              </text>
+              <defs>
+                <linearGradient id="g0" x1="1.92829" y1="25.5711" x2="20.214" y2="25.5711" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#E1A529"></stop><stop offset="0.51" stop-color="#F87900"></stop><stop offset="1" stop-color="#A963FF"></stop>
+                </linearGradient>
+                <linearGradient id="g1" x1="0.643252" y1="30.7427" x2="11.0513" y2="30.7427" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#A963FF"></stop><stop offset="0.52" stop-color="#F87900"></stop><stop offset="1" stop-color="#E1A529"></stop>
+                </linearGradient>
+                <linearGradient id="g2" x1="0.642578" y1="20.9999" x2="28.0712" y2="20.9999" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#A963FF"></stop><stop offset="0.52" stop-color="#F87900"></stop><stop offset="1" stop-color="#E1A529"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M18.9283 34.7139H13.214C13.2167 33.0625 12.893 31.4268 12.2615 29.9009C11.6299 28.375 10.703 26.989 9.53401 25.8225C8.36622 24.6553 6.97994 23.7295 5.45434 23.0981C3.92873 22.4667 2.29369 22.142 0.642578 22.1425V16.4282C3.04436 16.4257 5.42302 16.8973 7.64211 17.8161C9.86119 18.735 11.877 20.0829 13.574 21.7825C15.2744 23.4789 16.6228 25.4947 17.5417 27.7139C18.4606 29.9331 18.9318 32.312 18.9283 34.7139Z" fill="url(#g0)"></path>
+              <path d="M8.64268 30.7427C8.6351 31.8035 8.20641 32.818 7.45091 33.5627C6.6954 34.3075 5.67497 34.7217 4.61411 34.7141C3.55324 34.7065 2.53884 34.2778 1.79405 33.5223C1.04926 32.7668 0.635103 31.7464 0.64268 30.6855C0.660313 29.6315 1.09336 28.627 1.84765 27.8905C2.60194 27.154 3.61649 26.745 4.67069 26.7525C5.72489 26.7601 6.7335 27.1835 7.47719 27.9307C8.22089 28.6779 8.64011 29.6885 8.64268 30.7427Z" fill="url(#g1)"></path>
+              <path d="M28.0712 34.7142H22.3746C22.3791 31.8638 21.8215 29.0405 20.7337 26.4059C19.6459 23.7712 18.0493 21.3769 16.0352 19.3599C14.0295 17.3427 11.6446 15.7423 9.01773 14.6507C6.39088 13.5592 3.57404 12.9982 0.729435 12.9999H0.642578V7.28566H0.729435C4.32272 7.28214 7.88112 7.99029 11.1993 9.36926C14.5174 10.7482 17.5296 12.7707 20.062 15.3199C22.6073 17.8668 24.6249 20.8909 25.9993 24.219C27.3736 27.547 28.0777 31.1136 28.0712 34.7142Z" fill="url(#g2)"></path>
+            </svg>
+          </div>
+
+          <div class="nav-items" aria-hidden="true">
+            <div class="nav-item">Profile</div>
+            <div class="nav-item">Podcasts</div>
+            <div class="nav-item">Contact Us</div>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:16px">
+          <div class="searchbox" role="search" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
+              <path d="M3.31732 17.2689L6.14184 14.333C7.30249 15.2737 8.78573 15.8279 10.3927 15.7968C14.0108 15.7268 16.897 12.7267 16.8271 9.10864C16.7571 5.49056 13.757 2.60428 10.1389 2.67424C6.52085 2.74421 3.63456 5.74432 3.70453 9.3624C3.7356 10.9693 4.34671 12.4301 5.33162 13.5535L2.5071 16.4894C2.39974 16.601 2.34703 16.746 2.34982 16.89C2.3526 17.034 2.41012 17.1769 2.52247 17.2843C2.74568 17.4997 3.10186 17.4928 3.31732 17.2689ZM10.1607 3.79903C13.1586 3.74106 15.6443 6.13245 15.7023 9.13039C15.7603 12.1283 13.3689 14.614 10.3709 14.672C7.37299 14.73 4.88729 12.3386 4.82932 9.34065C4.77135 6.34271 7.16273 3.85701 10.1607 3.79903Z" fill="#FBF2FC"></path>
+          </svg>
+            <input type="text" placeholder="Type to search" aria-label="Search input" />
+          </div>
+
+          <div class="header-icons">
+            <button class="icon-32" aria-label="Notifications" title="Notifications">
+              <svg width="32" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.357 29C15.0397 29 13.8557 28.316 13.1864 27.1707C12.909 26.6933 13.069 26.0813 13.5464 25.8027C14.021 25.5253 14.6344 25.6853 14.9144 26.1627C15.5264 27.212 17.1877 27.212 17.7997 26.1627C18.0784 25.6853 18.6917 25.5253 19.1677 25.8027C19.645 26.08 19.8064 26.6933 19.5277 27.1707C18.8584 28.316 17.6744 29 16.357 29ZM27.9237 24.4333C28.0904 24.0867 28.0437 23.676 27.805 23.376C27.7797 23.3453 25.3504 20.252 25.3504 16.6667V11.9933C25.3504 7.03466 21.3157 3 16.357 3C11.3984 3 7.3637 7.03466 7.3637 11.9933V16.6667C7.3637 20.252 4.93438 23.3453 4.90904 23.376C4.67038 23.676 4.6237 24.088 4.79037 24.4333C4.95704 24.7787 5.30637 25 5.69037 25H27.0237C27.4077 25 27.757 24.7787 27.9237 24.4333ZM9.3637 16.6667V11.9933C9.3637 8.13733 12.501 5 16.357 5C20.213 5 23.3504 8.13733 23.3504 11.9933V16.6667C23.3504 19.248 24.3504 21.544 25.1744 23H7.53838C8.36371 21.544 9.3637 19.248 9.3637 16.6667Z" fill="#E8E7EB"></path>
+            </svg>
+            </button>
+            <div class="profile-badge" aria-hidden="true">A</div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- LEFT TEXT -->
+     
+    <div class="side-text" role="note">
+      <h2>watch this video</h2>
+      <p>This is a placeholder for a video with custom cursor. when user hover on it, he or she will see the interaction type following the cursor.</p>
+    </div>
+
+    <!-- VIDEO CARD (unchanged) -->
+    <div class="video-wrapper" role="region" aria-label="Video player">
+      <img src="https://images.pexels.com/photos/1047796/pexels-photo-1047796.jpeg" alt="Video thumbnail" class="video-thumb" />
+      <div class="play-bg" id="playButton" role="button" tabindex="0" aria-label="Play / Pause">
+        <div class="icon-frame" aria-hidden="true">
+          <svg id="playIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z" fill="white"></path>
+          </svg>
+          <svg id="pauseIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
+            <rect x="6" y="7" width="6" height="23" fill="white" rx="1"></rect>
+            <rect x="20" y="7" width="6" height="23" fill="white" rx="1"></rect>
+          </svg>
+        </div>
+      </div>
+
+      <div class="player-controllers" role="group" aria-label="Player controls">
+        <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" tabindex="0">
+          <div class="progress-fill" id="progressFill" style="width:20%"></div>
+        </div>
+
+        <div class="video-meta">
+          <div>Cold Little Heart</div>
+          <div>0:47 / 1:52</div>
+        </div>
+
+        <div class="controls-row">
+          <div class="left-controls" aria-hidden="true">
+            <div class="small-icon" title="Pause small">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect><rect x="14" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect></svg>
+            </div>
+            <div class="small-icon" title="Skip backward">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12l-8-6 8-6zM20 6v12l-8-6 8-6z" fill="#fff" transform="scale(0.5) translate(6,6)"></path></svg>
+            </div>
+            <div class="small-icon" title="Skip forward">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6v12l8-6-8-6zm12 0v12l8-6-8-6z" fill="#fff" transform="scale(0.5) translate(2,6)"></path></svg>
+            </div>
+          </div>
+
+          <div class="right-controls" aria-hidden="true">
+            <div class="small-icon" title="Volume">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="#fff"/></svg>
+            </div>
+            <div class="small-icon" title="Subtitles">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="1" fill="#fff" opacity="0.9"/></svg>
+            </div>
+            <div class="small-icon" title="Fullscreen">
+              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm10 5h-3v2h5v-5h-2v3zM7 5h3V3H5v5h2V5zm10 0v3h2V3h-5v2h3z" fill="#fff"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (function(){
+      const btn = document.getElementById('playButton');
+      const play = document.getElementById('playIcon');
+      const pause = document.getElementById('pauseIcon');
+      let playing = false;
+      function toggle(){
+        playing = !playing;
+        if(playing){ play.style.display='none'; pause.style.display='block'; }
+        else { play.style.display='block'; pause.style.display='none'; }
+      }
+      btn.addEventListener('click', toggle);
+      btn.addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); }});
+    })();
+  </script>
+</body>
+</html>
