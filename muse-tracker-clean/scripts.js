@@ -233,13 +233,13 @@ const state = {
         });
 
         // Progress bar
-        const progressBar = document.getElementById('progressBar');
-        progressBar.addEventListener('click', (e) => {
+        progressBar.parentElement.addEventListener("click", (e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
-            this.currentTime = percent * this.totalTime;
-            this.updateUI();
+            video.currentTime = percent * video.duration;
         });
+        
+        
 
         // Search input
         const searchInput = document.getElementById('searchInput');
@@ -279,48 +279,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-const follower = document.getElementById('follower');
-if (follower && follower.parentElement !== document.body) {
-  document.body.appendChild(follower); // منتقلش کن به body
-}
+const follower = document.getElementById("follower");
+const player = document.getElementById("player");
 
-let targetX = window.innerWidth / 2;
-let targetY = window.innerHeight / 2;
-let currentX = targetX;
-let currentY = targetY;
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
+let angle = 0;
+let isHovering = false;
 
-const offsetDistance = 60; 
-let rotationToMouse = 0;
-let selfRotation = 0;
 
-document.addEventListener('mousemove', (e) => {
-  const dx = e.clientX - currentX;
-  const dy = e.clientY - currentY;
-  const angle = Math.atan2(dy, dx);
+const offset = 30;
 
-  rotationToMouse = angle * (170 / Math.PI);
-
-  targetX = e.clientX - Math.cos(angle) * offsetDistance;
-  targetY = e.clientY - Math.sin(angle) * offsetDistance;
+player.addEventListener("mouseenter", () => {
+    isHovering = true;
+    follower.style.display = "flex";
 });
 
-function animateFollower() {
-  currentX += (targetX - currentX) * 1.5;
-  currentY += (targetY - currentY) * 1.5;
+player.addEventListener("mouseleave", () => {
+    isHovering = false;
+    follower.style.display = "none";
+});
 
-  selfRotation = (selfRotation + 0.5) % 360;
+document.addEventListener("mousemove", e => {
+    const rect = player.getBoundingClientRect();
+    mouseX = e.clientX - rect.left + offset;
+    mouseY = e.clientY - rect.top + offset;
+});
 
-  follower.style.left = `${currentX}px`;
-  follower.style.top = `${currentY}px`;
+function animate() {
+    if(isHovering) {
+        
+        currentX += (mouseX - currentX) * 0.2;
+        currentY += (mouseY - currentY) * 0.2;
 
-  follower.style.transform = `rotate(${rotationToMouse}deg) rotate(${selfRotation}deg)`;
+        angle += 0.75;
 
-  requestAnimationFrame(animateFollower);
+        follower.style.transform = `translate(${currentX}px, ${currentY}px) rotate(${angle}deg)`;
+        
+    }
+
+    requestAnimationFrame(animate);
 }
 
-requestAnimationFrame(animateFollower);
+animate();
 
-window.addEventListener('resize', () => {
-  targetX = Math.min(window.innerWidth, targetX);
-  targetY = Math.min(window.innerHeight, targetY);
-});
+
+    
