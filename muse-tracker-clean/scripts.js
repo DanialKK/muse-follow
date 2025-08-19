@@ -274,27 +274,69 @@ const state = {
 };
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    state.init();
-});
+        document.addEventListener('DOMContentLoaded', () => {
+            state.init();
+        });
 
 
-const follower = document.getElementById("follower");
-const player = document.getElementById("player");
+        const follower = document.getElementById("follower");
+        const player = document.getElementById("player");
 
-let mouseX = 0;
-let mouseY = 0;
-let currentX = 0;
-let currentY = 0;
-let angle = 0;
-let isHovering = false;
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let angle = 0;
+        let isHovering = false;
 
 
-const offset = 30;
+        const offset = 30;
 
-player.addEventListener("mouseenter", () => {
-    isHovering = true;
-    follower.style.display = "flex";
+        player.addEventListener("mouseenter", () => {
+            isHovering = true;
+            follower.style.display = "flex";
+            
+        const progressFill = document.getElementById('progressFill');
+        const currentTimeDisplay = document.getElementById('currentTime');
+
+        let animationFrameId;
+
+        function updateProgress() {
+            if (state.isPlaying) {
+            
+        state.currentTime += 0.0167;
+
+        
+        if (state.currentTime >= state.totalTime) {
+            state.currentTime = state.totalTime;
+            state.isPlaying = false;
+            state.updateUI();
+            cancelAnimationFrame(animationFrameId);
+            return;
+        }
+
+       
+        state.updateUI();
+
+       
+        animationFrameId = requestAnimationFrame(updateProgress);
+    }
+}
+
+
+    state.togglePlay = function() {
+    this.isPlaying = !this.isPlaying;
+    this.updateUI();
+
+    if (this.isPlaying) {
+        
+        animationFrameId = requestAnimationFrame(updateProgress);
+    } else {
+        
+        cancelAnimationFrame(animationFrameId);
+    }
+};
+
 });
 
 player.addEventListener("mouseleave", () => {
