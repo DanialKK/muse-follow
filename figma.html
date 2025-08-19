@@ -1,226 +1,639 @@
 <!doctype html>
 <html lang="fa">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Figma + SVGs — Header glass full-width</title>
-  <style>
-    :root{
-      --canvas-w:1280px; --canvas-h:832px;
-      --video-w:816px; --video-h:459px;
-      --play-bg-size:96px; --icon-frame-size:58px;
-      --play-icon-w:32px; --play-icon-h:37px;
-      --pause-icon-w:32px; --pause-icon-h:37px;
-      --progress-h:5px; --small-icon:24px; --header-icon:32px;
-    }
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,"Public Sans";background:#0f0716;display:flex;align-items:center;justify-content:center}
-    .canvas{width:var(--canvas-w);height:var(--canvas-h);position:relative;background:#1C0C32;overflow:hidden;box-sizing:border-box}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Figma + SVGs — Header glass full-width</title>
+    <style>
+        :root {
+            --canvas-w: 1280px;
+            --canvas-h: 832px;
+            --video-w: 816px;
+            --video-h: 459px;
+            --play-bg-size: 96px;
+            --icon-frame-size: 58px;
+            --play-icon-w: 32px;
+            --play-icon-h: 37px;
+            --pause-icon-w: 32px;
+            --pause-icon-h: 37px;
+            --progress-h: 5px;
+            --small-icon: 24px;
+            --header-icon: 32px;
+        }
 
-    /* ===== HEADER — now glassy & full-width ===== */
-    .header{
-      position:absolute;
-      left:0;
-      right:0;
-      top:0;
-      height:64px; /* ثابت نگه داشتن ارتفاع هدر */
-      box-sizing:border-box;
-      /* glass look */
-      background: rgba(45,40,51,0.45);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
-      display:flex;
-      align-items:center;
-      z-index:50;
-    }
-    /* header-inner now stretches but uses small side padding so icons are close to edges */
-    .header-inner{
-      width:100%;
-      padding:0 24px; /* ← اینجا کنترلت؛ اگه می‌خوای کاملا بدون فاصله بزن 0 */
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      box-sizing:border-box;
-    }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, Arial, "Public Sans";
+            background: #0f0716;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
 
-    /* Logo + nav */
-    .logo{display:flex;align-items:center;gap:12px}
-    .nav-items{display:flex;gap:16px;align-items:center}
-    .nav-item{padding:8px 12px;color:#E8E7EB;font-weight:700;font-size:15px}
+        .canvas {
+            width: var(--canvas-w);
+            height: var(--canvas-h);
+            position: relative;
+            background: #1C0C32;
+            overflow: hidden;
+            box-sizing: border-box
+        }
 
-    /* search and icons (kept compact) */
-    .searchbox{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;width:320px;box-sizing:border-box;outline:1px solid rgba(82,53,112,0.9);background:transparent;color:#FBF2FC}
-    .searchbox input{flex:1;background:transparent;border:0;color:#FBF2FC;outline:none;font-size:15px}
-    .header-icons{display:flex;align-items:center;gap:12px}
-    .icon-32{width:var(--header-icon);height:var(--header-icon);display:inline-flex;align-items:center;justify-content:center}
-    .profile-badge{width:32px;height:32px;border-radius:9999px;background:#FF5418;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+        /* ===== HEADER — now glassy & full-width ===== */
+        .header {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 64px;
+            /* ثابت نگه داشتن ارتفاع هدر */
+            box-sizing: border-box;
+            /* glass look */
+            background: rgba(45, 40, 51, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: center;
+            z-index: 50;
+        }
 
-    /* rest of page kept from previous version */
-    .side-text{position:absolute;left:24px;top:392px;width:400px;height:140px;color:#fff;text-align:center;box-sizing:border-box}
-    .side-text h2{margin:0;font-size:24px;font-weight:600;text-transform:capitalize}
-    .side-text p{margin:35px auto 0;width:383px;font-size:18px;font-weight:300;line-height:1.2;color:#fff;text-transform:capitalize;word-wrap: break-word}
+        /* header-inner now stretches but uses small side padding so icons are close to edges */
+        .header-inner {
+            width: 100%;
+            padding: 0 24px;
+            /* ← اینجا کنترلت؛ اگه می‌خوای کاملا بدون فاصله بزن 0 */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-sizing: border-box;
+        }
 
-    .video-wrapper{position:absolute;left:440px;top:232px;width:var(--video-w);height:var(--video-h);border-radius:20.4px;overflow:hidden;background:#000;box-sizing:border-box}
-    .video-thumb{width:100%;height:100%;object-fit:cover;display:block}
+        /* Logo + nav */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
 
-    .play-bg{ position:absolute; left:50%; top:50%; width:var(--play-bg-size); height:var(--play-bg-size);
-      transform:translate(-50%,-50%); border-radius:9999px; display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,0.28); outline:1px solid rgba(255,255,255,0.20); z-index:8;
-    }
-    .icon-frame{width:var(--icon-frame-size);height:var(--icon-frame-size);display:flex;align-items:center;justify-content:center}
-    .icon-frame svg{display:block}
+        .nav-items {
+            display: flex;
+            gap: 16px;
+            align-items: center
+        }
 
-    .player-controllers{ position:absolute; left:0; right:0; bottom:0; padding:18px 24px; box-sizing:border-box;
-      background: linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.32) 100%); backdrop-filter: blur(0.51px); z-index:6;
-    }
+        .nav-item {
+            padding: 8px 12px;
+            color: #E8E7EB;
+            font-weight: 700;
+            font-size: 15px
+        }
 
-    .progress-wrap{width:calc(100% - 48px);height:var(--progress-h);background:rgba(255,255,255,0.06);border-radius:999px;margin:8px auto 6px;overflow:hidden}
-    .progress-fill{height:100%;width:20%;background:#3f3f46;transition:width .12s linear}
+        /* search and icons (kept compact) */
+        .searchbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            width: 320px;
+            box-sizing: border-box;
+            outline: 1px solid rgba(82, 53, 112, 0.9);
+            background: transparent;
+            color: #FBF2FC
+        }
 
-    .video-meta{display:flex;justify-content:space-between;align-items:flex-end;color:#fff;font-size:12px;width:calc(100% - 48px);margin:0 auto;box-sizing:border-box}
-    .controls-row{display:flex;justify-content:space-between;align-items:center;width:calc(100% - 48px);margin:6px auto 0;box-sizing:border-box}
-    .left-controls,.right-controls{display:flex;gap:8px;align-items:center}
-    .small-icon{width:var(--small-icon);height:var(--small-icon);display:inline-flex;align-items:center;justify-content:center}
+        .searchbox input {
+            flex: 1;
+            background: transparent;
+            border: 0;
+            color: #FBF2FC;
+            outline: none;
+            font-size: 15px
+        }
 
-    @media (max-width:1100px){ .canvas{transform:scale(0.9);transform-origin:center} }
-    @media (max-width:900px){ .canvas{transform:scale(0.75)} }
-  </style>
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .icon-32 {
+            width: var(--header-icon);
+            height: var(--header-icon);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .profile-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            background: #FF5418;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700
+        }
+
+        /* rest of page kept from previous version */
+        .side-text {
+            position: absolute;
+            left: 24px;
+            top: 392px;
+            width: 400px;
+            height: 140px;
+            color: #fff;
+            text-align: center;
+            box-sizing: border-box
+        }
+
+        .side-text h2 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: capitalize
+        }
+
+        .side-text p {
+            margin: 35px auto 0;
+            width: 383px;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.2;
+            color: #fff;
+            text-transform: capitalize;
+            word-wrap: break-word
+        }
+
+        .video-wrapper {
+            position: absolute;
+            left: 440px;
+            top: 232px;
+            width: var(--video-w);
+            height: var(--video-h);
+            border-radius: 20.4px;
+            overflow: hidden;
+            background: #000;
+            box-sizing: border-box
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
+
+        .play-bg {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: var(--play-bg-size);
+            height: var(--play-bg-size);
+            transform: translate(-50%, -50%);
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.28);
+            outline: 1px solid rgba(255, 255, 255, 0.20);
+            z-index: 8;
+        }
+
+        .icon-frame {
+            width: var(--icon-frame-size);
+            height: var(--icon-frame-size);
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .icon-frame svg {
+            display: block
+        }
+
+        .player-controllers {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 18px 24px;
+            box-sizing: border-box;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.32) 100%);
+            backdrop-filter: blur(0.51px);
+            z-index: 6;
+        }
+
+        .progress-wrap {
+            width: calc(100% - 48px);
+            height: var(--progress-h);
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 999px;
+            margin: 8px auto 6px;
+            overflow: hidden
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 20%;
+            background: #3f3f46;
+            transition: width .12s linear
+        }
+
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            color: #fff;
+            font-size: 12px;
+            width: calc(100% - 48px);
+            margin: 0 auto;
+            box-sizing: border-box
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 48px);
+            margin: 6px auto 0;
+            box-sizing: border-box
+        }
+
+        .left-controls,
+        .right-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center
+        }
+
+        .small-icon {
+            width: var(--small-icon);
+            height: var(--small-icon);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        #follower {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            pointer-events: none;
+        }
+
+        @media (max-width:1100px) {
+            .canvas {
+                transform: scale(0.9);
+                transform-origin: center
+            }
+        }
+
+        @media (max-width:900px) {
+            .canvas {
+                transform: scale(0.75)
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="canvas" role="main" aria-label="Figma canvas 1280x832">
+    <div class="canvas" role="main" aria-label="Figma canvas 1280x832">
 
-    <!-- HEADER (glass, full-width) -->
-    <header class="header" role="banner" aria-label="Header — glass">
-      <div class="header-inner">
-        <div style="display:flex;align-items:center;gap:24px;">
-          <div class="logo" aria-hidden="false">
-            <!-- SVG لوگو (از index.html) -->
-            <svg width="112" height="42" viewBox="0 0 112 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <text fill="white" font-family="Public Sans" font-size="36" font-weight="900">
-                <tspan x="34.7031" y="34.05">VRS</tspan>
-              </text>
-              <defs>
-                <linearGradient id="g0" x1="1.92829" y1="25.5711" x2="20.214" y2="25.5711" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#E1A529"></stop><stop offset="0.51" stop-color="#F87900"></stop><stop offset="1" stop-color="#A963FF"></stop>
-                </linearGradient>
-                <linearGradient id="g1" x1="0.643252" y1="30.7427" x2="11.0513" y2="30.7427" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A963FF"></stop><stop offset="0.52" stop-color="#F87900"></stop><stop offset="1" stop-color="#E1A529"></stop>
-                </linearGradient>
-                <linearGradient id="g2" x1="0.642578" y1="20.9999" x2="28.0712" y2="20.9999" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A963FF"></stop><stop offset="0.52" stop-color="#F87900"></stop><stop offset="1" stop-color="#E1A529"></stop>
-                </linearGradient>
-              </defs>
-              <path d="M18.9283 34.7139H13.214C13.2167 33.0625 12.893 31.4268 12.2615 29.9009C11.6299 28.375 10.703 26.989 9.53401 25.8225C8.36622 24.6553 6.97994 23.7295 5.45434 23.0981C3.92873 22.4667 2.29369 22.142 0.642578 22.1425V16.4282C3.04436 16.4257 5.42302 16.8973 7.64211 17.8161C9.86119 18.735 11.877 20.0829 13.574 21.7825C15.2744 23.4789 16.6228 25.4947 17.5417 27.7139C18.4606 29.9331 18.9318 32.312 18.9283 34.7139Z" fill="url(#g0)"></path>
-              <path d="M8.64268 30.7427C8.6351 31.8035 8.20641 32.818 7.45091 33.5627C6.6954 34.3075 5.67497 34.7217 4.61411 34.7141C3.55324 34.7065 2.53884 34.2778 1.79405 33.5223C1.04926 32.7668 0.635103 31.7464 0.64268 30.6855C0.660313 29.6315 1.09336 28.627 1.84765 27.8905C2.60194 27.154 3.61649 26.745 4.67069 26.7525C5.72489 26.7601 6.7335 27.1835 7.47719 27.9307C8.22089 28.6779 8.64011 29.6885 8.64268 30.7427Z" fill="url(#g1)"></path>
-              <path d="M28.0712 34.7142H22.3746C22.3791 31.8638 21.8215 29.0405 20.7337 26.4059C19.6459 23.7712 18.0493 21.3769 16.0352 19.3599C14.0295 17.3427 11.6446 15.7423 9.01773 14.6507C6.39088 13.5592 3.57404 12.9982 0.729435 12.9999H0.642578V7.28566H0.729435C4.32272 7.28214 7.88112 7.99029 11.1993 9.36926C14.5174 10.7482 17.5296 12.7707 20.062 15.3199C22.6073 17.8668 24.6249 20.8909 25.9993 24.219C27.3736 27.547 28.0777 31.1136 28.0712 34.7142Z" fill="url(#g2)"></path>
-            </svg>
-          </div>
+        <!-- HEADER (glass, full-width) -->
+        <header class="header" role="banner" aria-label="Header — glass">
+            <div class="header-inner">
+                <div style="display:flex;align-items:center;gap:24px;">
+                    <div class="logo" aria-hidden="false">
+                        <!-- SVG لوگو (از index.html) -->
+                        <svg width="112" height="42" viewBox="0 0 112 42" xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true">
+                            <text fill="white" font-family="Public Sans" font-size="36" font-weight="900">
+                                <tspan x="34.7031" y="34.05">VRS</tspan>
+                            </text>
+                            <defs>
+                                <linearGradient id="g0" x1="1.92829" y1="25.5711" x2="20.214" y2="25.5711"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#E1A529"></stop>
+                                    <stop offset="0.51" stop-color="#F87900"></stop>
+                                    <stop offset="1" stop-color="#A963FF"></stop>
+                                </linearGradient>
+                                <linearGradient id="g1" x1="0.643252" y1="30.7427" x2="11.0513" y2="30.7427"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#A963FF"></stop>
+                                    <stop offset="0.52" stop-color="#F87900"></stop>
+                                    <stop offset="1" stop-color="#E1A529"></stop>
+                                </linearGradient>
+                                <linearGradient id="g2" x1="0.642578" y1="20.9999" x2="28.0712" y2="20.9999"
+                                    gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#A963FF"></stop>
+                                    <stop offset="0.52" stop-color="#F87900"></stop>
+                                    <stop offset="1" stop-color="#E1A529"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M18.9283 34.7139H13.214C13.2167 33.0625 12.893 31.4268 12.2615 29.9009C11.6299 28.375 10.703 26.989 9.53401 25.8225C8.36622 24.6553 6.97994 23.7295 5.45434 23.0981C3.92873 22.4667 2.29369 22.142 0.642578 22.1425V16.4282C3.04436 16.4257 5.42302 16.8973 7.64211 17.8161C9.86119 18.735 11.877 20.0829 13.574 21.7825C15.2744 23.4789 16.6228 25.4947 17.5417 27.7139C18.4606 29.9331 18.9318 32.312 18.9283 34.7139Z"
+                                fill="url(#g0)"></path>
+                            <path
+                                d="M8.64268 30.7427C8.6351 31.8035 8.20641 32.818 7.45091 33.5627C6.6954 34.3075 5.67497 34.7217 4.61411 34.7141C3.55324 34.7065 2.53884 34.2778 1.79405 33.5223C1.04926 32.7668 0.635103 31.7464 0.64268 30.6855C0.660313 29.6315 1.09336 28.627 1.84765 27.8905C2.60194 27.154 3.61649 26.745 4.67069 26.7525C5.72489 26.7601 6.7335 27.1835 7.47719 27.9307C8.22089 28.6779 8.64011 29.6885 8.64268 30.7427Z"
+                                fill="url(#g1)"></path>
+                            <path
+                                d="M28.0712 34.7142H22.3746C22.3791 31.8638 21.8215 29.0405 20.7337 26.4059C19.6459 23.7712 18.0493 21.3769 16.0352 19.3599C14.0295 17.3427 11.6446 15.7423 9.01773 14.6507C6.39088 13.5592 3.57404 12.9982 0.729435 12.9999H0.642578V7.28566H0.729435C4.32272 7.28214 7.88112 7.99029 11.1993 9.36926C14.5174 10.7482 17.5296 12.7707 20.062 15.3199C22.6073 17.8668 24.6249 20.8909 25.9993 24.219C27.3736 27.547 28.0777 31.1136 28.0712 34.7142Z"
+                                fill="url(#g2)"></path>
+                        </svg>
+                    </div>
 
-          <div class="nav-items" aria-hidden="true">
-            <div class="nav-item">Profile</div>
-            <div class="nav-item">Podcasts</div>
-            <div class="nav-item">Contact Us</div>
-          </div>
+                    <div class="nav-items" aria-hidden="true">
+                        <div class="nav-item">Profile</div>
+                        <div class="nav-item">Podcasts</div>
+                        <div class="nav-item">Contact Us</div>
+                    </div>
+                </div>
+
+                <div style="display:flex;align-items:center;gap:16px">
+                    <div class="searchbox" role="search" aria-label="Search">
+                        <svg width="18" height="18" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="shrink-0">
+                            <path
+                                d="M3.31732 17.2689L6.14184 14.333C7.30249 15.2737 8.78573 15.8279 10.3927 15.7968C14.0108 15.7268 16.897 12.7267 16.8271 9.10864C16.7571 5.49056 13.757 2.60428 10.1389 2.67424C6.52085 2.74421 3.63456 5.74432 3.70453 9.3624C3.7356 10.9693 4.34671 12.4301 5.33162 13.5535L2.5071 16.4894C2.39974 16.601 2.34703 16.746 2.34982 16.89C2.3526 17.034 2.41012 17.1769 2.52247 17.2843C2.74568 17.4997 3.10186 17.4928 3.31732 17.2689ZM10.1607 3.79903C13.1586 3.74106 15.6443 6.13245 15.7023 9.13039C15.7603 12.1283 13.3689 14.614 10.3709 14.672C7.37299 14.73 4.88729 12.3386 4.82932 9.34065C4.77135 6.34271 7.16273 3.85701 10.1607 3.79903Z"
+                                fill="#FBF2FC"></path>
+                        </svg>
+                        <input type="text" placeholder="Type to search" aria-label="Search input" />
+                    </div>
+
+                    <div class="header-icons">
+                        <button class="icon-32" aria-label="Notifications" title="Notifications">
+                            <svg width="32" height="32" viewBox="0 0 33 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.357 29C15.0397 29 13.8557 28.316 13.1864 27.1707C12.909 26.6933 13.069 26.0813 13.5464 25.8027C14.021 25.5253 14.6344 25.6853 14.9144 26.1627C15.5264 27.212 17.1877 27.212 17.7997 26.1627C18.0784 25.6853 18.6917 25.5253 19.1677 25.8027C19.645 26.08 19.8064 26.6933 19.5277 27.1707C18.8584 28.316 17.6744 29 16.357 29ZM27.9237 24.4333C28.0904 24.0867 28.0437 23.676 27.805 23.376C27.7797 23.3453 25.3504 20.252 25.3504 16.6667V11.9933C25.3504 7.03466 21.3157 3 16.357 3C11.3984 3 7.3637 7.03466 7.3637 11.9933V16.6667C7.3637 20.252 4.93438 23.3453 4.90904 23.376C4.67038 23.676 4.6237 24.088 4.79037 24.4333C4.95704 24.7787 5.30637 25 5.69037 25H27.0237C27.4077 25 27.757 24.7787 27.9237 24.4333ZM9.3637 16.6667V11.9933C9.3637 8.13733 12.501 5 16.357 5C20.213 5 23.3504 8.13733 23.3504 11.9933V16.6667C23.3504 19.248 24.3504 21.544 25.1744 23H7.53838C8.36371 21.544 9.3637 19.248 9.3637 16.6667Z"
+                                    fill="#E8E7EB"></path>
+                            </svg>
+                        </button>
+                        <div class="profile-badge" aria-hidden="true">A</div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- LEFT TEXT -->
+
+        <div class="side-text" role="note">
+            <h2>watch this video</h2>
+            <p>This is a placeholder for a video with custom cursor. when user hover on it, he or she will see the
+                interaction type following the cursor.</p>
         </div>
 
-        <div style="display:flex;align-items:center;gap:16px">
-          <div class="searchbox" role="search" aria-label="Search">
-            <svg width="18" height="18" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
-              <path d="M3.31732 17.2689L6.14184 14.333C7.30249 15.2737 8.78573 15.8279 10.3927 15.7968C14.0108 15.7268 16.897 12.7267 16.8271 9.10864C16.7571 5.49056 13.757 2.60428 10.1389 2.67424C6.52085 2.74421 3.63456 5.74432 3.70453 9.3624C3.7356 10.9693 4.34671 12.4301 5.33162 13.5535L2.5071 16.4894C2.39974 16.601 2.34703 16.746 2.34982 16.89C2.3526 17.034 2.41012 17.1769 2.52247 17.2843C2.74568 17.4997 3.10186 17.4928 3.31732 17.2689ZM10.1607 3.79903C13.1586 3.74106 15.6443 6.13245 15.7023 9.13039C15.7603 12.1283 13.3689 14.614 10.3709 14.672C7.37299 14.73 4.88729 12.3386 4.82932 9.34065C4.77135 6.34271 7.16273 3.85701 10.1607 3.79903Z" fill="#FBF2FC"></path>
-          </svg>
-            <input type="text" placeholder="Type to search" aria-label="Search input" />
-          </div>
+        <!-- VIDEO CARD (unchanged) -->
+        <div class="video-wrapper" role="region" aria-label="Video player">
+            <svg id="follower" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                <rect width="60" height="60" rx="30" fill="white" fill-opacity="0.1" />
+                <path
+                    d="M27.4532 54.9416L26.8207 56.4849L27.0378 57.5777L27.3531 57.612L27.3417 57.7171L25.6267 57.5306L25.6381 57.4255L25.9645 57.461L25.4247 54.7546L24.4763 57.2992L25.0351 57.3599L25.0237 57.465L23.9172 57.3447L23.9287 57.2396L24.2938 57.2793L25.7274 53.5672L26.2198 53.6207L26.7666 56.2104L27.7577 53.788L28.239 53.8403L29.2175 57.8147L29.4775 57.843L29.4661 57.9481L27.6681 57.7526L27.6795 57.6475L28.0668 57.6896L27.4532 54.9416Z"
+                    fill="black" />
+                <path
+                    d="M23.0158 54.2777L22.8608 54.2327L22.7413 54.6442C22.643 54.9827 22.5969 55.2146 22.603 55.34C22.6045 55.4679 22.6587 55.5474 22.7656 55.5784C22.8297 55.597 22.8937 55.5963 22.9575 55.5762C23.0167 55.5586 23.055 55.5195 23.0726 55.4589C23.0892 55.4019 23.0956 55.34 23.0918 55.2733L22.9582 55.2345C22.9514 55.1514 22.9635 55.0564 22.9946 54.9495C23.0246 54.8462 23.0955 54.7683 23.2073 54.7157C23.3181 54.6668 23.4412 54.662 23.5766 54.7013C23.883 54.7902 23.9932 54.9826 23.9074 55.2783C23.7801 55.7165 23.3442 55.8275 22.5996 55.6113C22.1756 55.4882 21.9047 55.3303 21.7868 55.1377C21.6642 54.9476 21.6589 54.6602 21.7706 54.2754L22.0856 53.1905C22.1394 53.0053 22.1146 52.8976 22.0113 52.8676C21.8902 52.8325 21.7656 52.9953 21.6377 53.356L21.5591 53.3274C21.6644 53.018 21.7857 52.8195 21.9232 52.732C22.0607 52.6444 22.247 52.6347 22.4821 52.703C22.9096 52.8272 23.1172 53.0304 23.1048 53.3126C23.1904 53.1907 23.2888 53.1111 23.4001 53.0739C23.5113 53.0366 23.656 53.0439 23.8342 53.0956C24.3615 53.2487 24.5625 53.5408 24.4373 53.9719C24.3639 54.2249 24.214 54.3687 23.9876 54.4034C23.7566 54.4406 23.4326 54.3987 23.0158 54.2777ZM23.4204 53.6824C23.4742 53.4972 23.4999 53.3752 23.4977 53.3166C23.4918 53.257 23.4621 53.2194 23.4087 53.2039C23.3517 53.1873 23.2871 53.2168 23.2149 53.2925C23.1382 53.3706 23.0765 53.4898 23.0299 53.6502L22.8856 54.1472L22.923 54.158C23.1439 54.2222 23.3014 54.0921 23.3956 53.7679L23.4204 53.6824Z"
+                    fill="black" />
+                <path
+                    d="M21.2023 53.1488L20.5301 54.7677L20.8128 54.8851L20.7743 54.9776L20.4917 54.8603L20.2164 55.5232L19.1623 55.3627L19.5357 54.4633L18.8676 54.1859L18.906 54.0934L19.5741 54.3708L20.2933 52.6388C20.3602 52.4778 20.3938 52.3532 20.3943 52.265C20.3913 52.1754 20.3385 52.1092 20.2357 52.0666C20.1329 52.0239 20.0225 52.0383 19.9044 52.1098C19.7829 52.1799 19.6732 52.299 19.5752 52.4672L19.4921 52.4206C19.6177 52.1956 19.7713 52.0385 19.953 51.9492C20.1332 51.8634 20.3656 51.8795 20.6499 51.9976C20.9343 52.1156 21.1284 52.2625 21.2322 52.4382C21.336 52.6139 21.3261 52.8507 21.2023 53.1488Z"
+                    fill="black" />
+                <path
+                    d="M17.0605 53.1988C17.2039 53.2767 17.3491 53.2543 17.496 53.1314C17.643 53.0086 17.8147 52.7663 18.0113 52.4044L18.1495 52.1501C18.3248 51.8274 18.4147 51.5765 18.4191 51.3973C18.4235 51.2182 18.3296 51.0764 18.1372 50.9719C17.9449 50.8674 17.7563 50.8494 17.5713 50.9178C17.3864 50.9862 17.2325 51.0947 17.1095 51.2432L17.0268 51.1856C17.2411 50.9389 17.465 50.7988 17.6985 50.7652C17.9371 50.7302 18.2047 50.7932 18.5014 50.9544C18.8795 51.1598 19.1148 51.4185 19.2071 51.7304C19.2976 52.0456 19.2367 52.3988 19.0241 52.79C18.8099 53.1844 18.5311 53.4256 18.1877 53.5135C17.8412 53.5997 17.4625 53.5312 17.0518 53.3081C16.7616 53.1504 16.5709 52.973 16.4797 52.7756C16.3867 52.5816 16.3863 52.3998 16.4783 52.2302C16.5704 52.0607 16.6752 51.9572 16.7927 51.9197C16.9069 51.8804 17.0292 51.8962 17.1596 51.9671C17.2868 52.0361 17.3709 52.1261 17.4119 52.2371C17.453 52.3481 17.4372 52.4704 17.3646 52.604C17.3327 52.6627 17.2927 52.717 17.2445 52.7668L17.0831 52.6791C17.0249 52.7319 16.9816 52.7844 16.9533 52.8366C16.8683 52.993 16.904 53.1138 17.0605 53.1988Z"
+                    fill="black" />
+                <path
+                    d="M14.8344 53.7509L13.7485 52.9638L14.9439 51.3147C14.7956 51.4181 14.6415 51.4759 14.4814 51.4881C14.3213 51.5004 14.1406 51.4336 13.9394 51.2877C13.4738 50.9502 13.4228 50.5307 13.7864 50.029L14.7694 48.6728L14.5171 48.4899L14.5759 48.4088L15.851 49.333L15.7922 49.4141L15.6075 49.2802L14.5461 50.7446C14.4154 50.9248 14.3436 51.0492 14.3307 51.1177C14.3155 51.1892 14.3395 51.2478 14.4025 51.2935C14.4987 51.3632 14.63 51.3621 14.7965 51.2904C14.9601 51.2165 15.1072 51.0894 15.2378 50.9092L16.1392 49.6656L15.9454 49.5252L16.0042 49.4441L17.2838 50.3716L17.2251 50.4527L16.9772 50.2731L14.6454 53.4902L14.8932 53.6698L14.8344 53.7509Z"
+                    fill="black" />
+                <path
+                    d="M8.43326 47.7063L9.42036 46.7165L9.49219 46.794C9.24104 47.249 9.09299 47.5833 9.04802 47.7969C9.00033 48.0129 9.05714 48.2081 9.21846 48.3823L9.26382 48.4313L11.9506 45.9435L11.6293 45.5964L11.715 45.517L13.095 47.0074L13.0093 47.0868L12.6879 46.7398L10.0011 49.2275L10.0502 49.2806C10.2115 49.4548 10.4057 49.5253 10.6328 49.492C10.8571 49.4613 11.1978 49.3405 11.6548 49.1297L11.7266 49.2073L10.6639 50.1154L8.43326 47.7063Z"
+                    fill="black" />
+                <path
+                    d="M7.5703 47.0655L6.82109 45.9531L8.51039 44.8153C8.33569 44.8614 8.17106 44.8627 8.01651 44.8192C7.86196 44.7757 7.71526 44.6508 7.5764 44.4447C7.25516 43.9677 7.35147 43.5562 7.86534 43.2101L9.25463 42.2744L9.08054 42.0159L9.16362 41.9599L10.0434 43.2661L9.96031 43.3221L9.83286 43.1329L8.3328 44.1432C8.14817 44.2676 8.038 44.3597 8.00227 44.4195C7.96346 44.4814 7.96582 44.5447 8.00934 44.6093C8.07566 44.7078 8.19935 44.752 8.38039 44.7418C8.55937 44.7286 8.74117 44.6599 8.92579 44.5355L10.1997 43.6775L10.066 43.479L10.1491 43.4231L11.032 44.7339L10.9489 44.7898L10.7779 44.536L7.4824 46.7556L7.65338 47.0095L7.5703 47.0655Z"
+                    fill="black" />
+                <path
+                    d="M8.50113 40.47C8.71267 40.8992 8.76191 41.2762 8.64887 41.6007C8.53085 41.9235 8.27551 42.1817 7.88282 42.3752C7.48681 42.5704 7.12495 42.5998 6.79722 42.4635C6.46786 42.3239 6.21135 42.0677 6.02769 41.695C5.65544 40.9396 5.85607 40.3899 6.62957 40.046L7.32323 41.4536L7.51791 41.3577C7.84403 41.197 8.06979 41.0341 8.19519 40.8689C8.32058 40.7037 8.33244 40.5179 8.23077 40.3116C8.04055 39.9256 7.7096 39.7743 7.23791 39.8579L7.20861 39.7606C7.47937 39.7058 7.72231 39.7288 7.93741 39.8296C8.15088 39.927 8.33878 40.1405 8.50113 40.47ZM7.22093 41.4978L6.96758 40.9837L6.72298 41.1042C6.45343 41.237 6.2786 41.3439 6.19849 41.4247C6.11341 41.5039 6.09465 41.5917 6.14221 41.6882C6.18812 41.7814 6.27581 41.825 6.40525 41.8191C6.52974 41.8116 6.7201 41.7446 6.97634 41.6184L7.22093 41.4978Z"
+                    fill="black" />
+                <path
+                    d="M5.80311 36.2181L2.86274 36.0343L2.97955 36.4523L2.87772 36.4808L2.6486 35.6608L2.75043 35.6323L2.82081 35.8842L6.8852 36.1411L7.01099 36.5913L3.68936 38.9928L3.75825 39.2393L3.65642 39.2678L3.16674 37.5152L3.26857 37.4867L3.37489 37.8673L5.80311 36.2181Z"
+                    fill="black" />
+                <path
+                    d="M3.3242 34.1811C3.35441 34.3754 3.32658 34.5224 3.24071 34.6221C3.15427 34.7182 3.03774 34.7776 2.8911 34.8004C2.74447 34.8232 2.61665 34.798 2.50766 34.7248C2.3981 34.648 2.32907 34.518 2.30057 34.3347C2.27207 34.1514 2.2944 34.0052 2.36756 33.8962C2.43705 33.7878 2.55245 33.7211 2.71375 33.696C2.87138 33.6715 3.00498 33.6976 3.11454 33.7745C3.2241 33.8513 3.29399 33.9868 3.3242 34.1811ZM3.83272 34.9525L3.62325 33.6052L6.1417 33.2137L6.09382 32.9057L6.1928 32.8903L6.44673 34.5235L6.34775 34.5389L6.30073 34.2364L3.88125 34.6126L3.9317 34.9371L3.83272 34.9525Z"
+                    fill="black" />
+                <path
+                    d="M4.93193 31.6412C5.32105 31.623 5.5795 31.5905 5.7073 31.5436C5.83138 31.497 5.89091 31.4199 5.88588 31.3124C5.88067 31.2013 5.82806 31.109 5.72806 31.0357C5.62789 30.9587 5.48331 30.9246 5.29431 30.9335L4.08249 30.9902C3.92314 30.9977 3.78936 31.0356 3.68113 31.1038C3.57291 31.172 3.52166 31.2672 3.52739 31.3895C3.53312 31.5118 3.61856 31.5914 3.7837 31.6282C3.94884 31.665 4.23523 31.6739 4.64288 31.6548L4.93193 31.6412ZM6.04692 30.8258L5.66067 30.9052C5.96304 31.0173 6.12325 31.266 6.14131 31.6514C6.15624 31.9701 6.053 32.2238 5.83157 32.4125C5.60997 32.5974 5.27126 32.7006 4.81544 32.7219C3.89268 32.7651 3.41411 32.4199 3.37973 31.6861C3.36445 31.36 3.44517 31.1408 3.6219 31.0285L1.98206 31.1054L1.99794 31.4445L1.89789 31.4491L1.83277 30.0595L5.9018 29.8688L5.88904 29.5964L5.9891 29.5917L6.04692 30.8258Z"
+                    fill="black" />
+                <path
+                    d="M6.1835 27.8713C6.14307 28.3482 5.99068 28.6964 5.72632 28.916C5.45859 29.1316 5.10662 29.2209 4.67041 29.1839C4.23051 29.1466 3.9054 28.985 3.69508 28.6991C3.48507 28.4095 3.39761 28.0577 3.43272 27.6437C3.50386 26.8046 3.95945 26.4374 4.79946 26.5421L4.66688 28.1058L4.88314 28.1241C5.24541 28.1548 5.52288 28.1318 5.71555 28.0551C5.90822 27.9783 6.01427 27.8253 6.0337 27.5961C6.07006 27.1673 5.86469 26.867 5.41758 26.695L5.44268 26.5966C5.70288 26.6894 5.89908 26.8345 6.03128 27.0319C6.16379 27.2255 6.21453 27.5054 6.1835 27.8713ZM4.55646 28.0908L4.60488 27.5197L4.33317 27.4966C4.03375 27.4713 3.82886 27.4725 3.71853 27.5004C3.6048 27.5243 3.5434 27.5898 3.53431 27.697C3.52553 27.8005 3.5781 27.8831 3.692 27.9449C3.80253 28.0027 4.00011 28.0436 4.28475 28.0678L4.55646 28.0908Z"
+                    fill="black" />
+                <path
+                    d="M5.56086 24.4166L5.09825 24.3179C4.74631 24.2428 4.48625 24.2082 4.3181 24.2141C4.14708 24.2155 4.04687 24.2852 4.01746 24.4231C4.00044 24.5029 4.01009 24.5732 4.04642 24.6341C4.0799 24.6906 4.14693 24.7409 4.2475 24.7851C4.40381 24.8526 4.64887 24.9219 4.98267 24.9931L5.40718 25.0837C5.80267 25.168 6.04264 25.2078 6.12711 25.2031C6.21235 25.1947 6.28307 25.1833 6.33929 25.1687C6.43488 25.1474 6.49506 25.0786 6.51982 24.9625C6.55001 24.821 6.48811 24.7111 6.33412 24.6327C6.22498 24.5753 5.96723 24.5033 5.56086 24.4166ZM6.61547 24.9943C6.51872 25.4479 6.32948 25.766 6.04774 25.9486C5.766 26.1313 5.40924 26.1766 4.97747 26.0845C4.54208 25.9916 4.23459 25.7971 4.05501 25.5008C3.87257 25.2002 3.82933 24.8249 3.9253 24.375C4.02127 23.9251 4.20171 23.6127 4.46662 23.4378C4.7279 23.2621 5.07986 23.2215 5.52251 23.3159C6.44773 23.5133 6.81205 24.0727 6.61547 24.9943Z"
+                    fill="black" />
+                <path d="M8.78604 20.0742L7.75712 22.6594L7.56581 22.5832L8.59473 19.998L8.78604 20.0742Z"
+                    fill="black" />
+                <path d="M10.1198 17.6245L8.78915 20.0682L8.60832 19.9697L9.93893 17.5261L10.1198 17.6245Z"
+                    fill="black" />
+                <path d="M11.7301 15.3568L10.119 17.6253L9.95115 17.5061L11.5622 15.2375L11.7301 15.3568Z"
+                    fill="black" />
+                <path d="M13.6015 13.2914L11.7332 15.3534L11.5807 15.2151L13.4489 13.1532L13.6015 13.2914Z"
+                    fill="black" />
+                <path d="M15.7006 11.4638L13.602 13.2908L13.4668 13.1355L15.5654 11.3085L15.7006 11.4638Z"
+                    fill="black" />
+                <path d="M18.0058 9.89473L15.7055 11.4601L15.5896 11.2899L17.8899 9.7245L18.0058 9.89473Z"
+                    fill="black" />
+                <path d="M20.4737 8.6142L18.0038 9.89551L17.909 9.71274L20.3789 8.43143L20.4737 8.6142Z" fill="black" />
+                <path d="M23.0818 7.6358L20.4765 8.61283L20.4042 8.42004L23.0095 7.44301L23.0818 7.6358Z"
+                    fill="black" />
+                <path d="M25.7896 6.97681L23.0861 7.63457L23.0374 7.4345L25.741 6.77675L25.7896 6.97681Z"
+                    fill="black" />
+                <path d="M28.5439 6.64662L25.7813 6.97865L25.7567 6.77422L28.5193 6.44219L28.5439 6.64662Z"
+                    fill="black" />
+                <path
+                    d="M31.0335 4.95157L31.5747 3.3739L31.2942 2.29568L30.9774 2.27987L30.9827 2.17427L32.7056 2.26026L32.7004 2.36586L32.3724 2.34949L33.0694 5.01974L33.8675 2.4241L33.3062 2.39609L33.3115 2.29049L34.423 2.34596L34.4178 2.45156L34.051 2.43326L32.8366 6.22277L32.342 6.19809L31.6448 3.64484L30.7969 6.12098L30.3133 6.09685L29.1044 2.1864L28.8431 2.17337L28.8484 2.06777L30.6547 2.15791L30.6495 2.26351L30.2604 2.2441L31.0335 4.95157Z"
+                    fill="black" />
+                <path
+                    d="M35.4974 5.35197L35.6548 5.3877L35.7496 4.96983C35.8277 4.62613 35.8599 4.39188 35.8464 4.26707C35.8373 4.13947 35.7785 4.06335 35.67 4.03871C35.6048 4.02393 35.541 4.02847 35.4786 4.05233C35.4205 4.0734 35.3845 4.11468 35.3706 4.17619C35.3574 4.23407 35.3547 4.29623 35.3625 4.36266L35.4981 4.39346C35.5098 4.476 35.5034 4.57154 35.4787 4.68008C35.4549 4.785 35.3888 4.86699 35.2802 4.92605C35.1725 4.9815 35.05 4.99362 34.9125 4.96241C34.6013 4.89179 34.4799 4.70633 34.548 4.40605C34.649 3.96105 35.0776 3.82437 35.8337 3.996C36.2643 4.09372 36.5441 4.23523 36.6732 4.42052C36.8068 4.60301 36.8292 4.88962 36.7406 5.28035L36.4905 6.382C36.4478 6.57013 36.4789 6.6761 36.5838 6.69991C36.7068 6.72784 36.8215 6.55794 36.9278 6.19022L37.0079 6.21413C36.9212 6.52922 36.8118 6.73455 36.6798 6.83012C36.5478 6.9257 36.3624 6.94639 36.1236 6.89219C35.6895 6.79364 35.4702 6.60312 35.4659 6.32061C35.3876 6.44742 35.2941 6.5327 35.1852 6.57647C35.0764 6.62024 34.9315 6.6216 34.7506 6.58054C34.2152 6.459 33.9971 6.17935 34.0965 5.74158C34.1548 5.48471 34.2959 5.33224 34.5199 5.28416C34.7483 5.23329 35.0741 5.25589 35.4974 5.35197ZM35.1288 5.9702C35.0861 6.15833 35.0677 6.28158 35.0734 6.33996C35.0828 6.39915 35.1147 6.43491 35.1689 6.44723C35.2268 6.46037 35.2895 6.42705 35.3571 6.34728C35.4291 6.26471 35.4836 6.14203 35.5205 5.97922L35.6351 5.47453L35.5971 5.4659C35.3728 5.41499 35.2233 5.55414 35.1485 5.88337L35.1288 5.9702Z"
+                    fill="black" />
+                <path
+                    d="M37.3924 6.37676L37.9686 4.72122L37.6795 4.62062L37.7125 4.52601L38.0015 4.62662L38.2375 3.94863L39.2992 4.04709L38.9791 4.96684L39.6623 5.20463L39.6294 5.29923L38.9462 5.06144L38.3297 6.8326C38.2724 6.99728 38.2461 7.12365 38.2508 7.21171C38.259 7.30098 38.3157 7.36391 38.4208 7.4005C38.5259 7.43708 38.6353 7.41623 38.749 7.33794C38.8661 7.26087 38.9687 7.13551 39.0566 6.96185L39.1423 7.00346C39.0302 7.23546 38.886 7.40134 38.7099 7.5011C38.535 7.59735 38.3021 7.59487 38.0113 7.49366C37.7205 7.39244 37.5181 7.2572 37.4042 7.08792C37.2902 6.91864 37.2863 6.68158 37.3924 6.37676Z"
+                    fill="black" />
+                <path
+                    d="M41.5127 6.07889C41.3649 6.00955 41.2213 6.04051 41.0818 6.17178C40.9424 6.30305 40.7852 6.55509 40.6103 6.92789L40.4873 7.18986C40.3313 7.52236 40.2564 7.77815 40.2625 7.95724C40.2686 8.13633 40.3708 8.27236 40.5689 8.36534C40.7671 8.45832 40.9565 8.46521 41.137 8.38603C41.3176 8.30684 41.4649 8.18948 41.5789 8.03396L41.6648 8.08658C41.4655 8.34548 41.2502 8.49855 41.019 8.54581C40.7829 8.59484 40.5121 8.54766 40.2064 8.40425C39.8168 8.22144 39.5668 7.97707 39.4563 7.67113C39.3473 7.36184 39.3874 7.00568 39.5765 6.60265C39.7672 6.19626 40.0313 5.93907 40.3688 5.83108C40.7097 5.72466 41.0918 5.77073 41.5149 5.9693C41.8138 6.10955 42.0147 6.27549 42.1173 6.46711C42.2216 6.65537 42.2328 6.83682 42.1508 7.01146C42.0689 7.18611 41.9704 7.29561 41.8553 7.33997C41.7436 7.38591 41.6206 7.37736 41.4862 7.31432C41.3552 7.25286 41.266 7.16796 41.2185 7.0596C41.171 6.95125 41.1795 6.82822 41.2441 6.69052C41.2725 6.63007 41.3093 6.57355 41.3544 6.52098L41.5207 6.59899C41.5757 6.54285 41.6158 6.48791 41.641 6.43417C41.7167 6.27296 41.6739 6.15453 41.5127 6.07889Z"
+                    fill="black" />
+                <path
+                    d="M43.7073 5.39957L44.8373 6.12186L43.7404 7.83799C43.8823 7.72617 44.0329 7.65946 44.192 7.63787C44.3511 7.61628 44.5353 7.67242 44.7448 7.80628C45.2293 8.11598 45.3047 8.53184 44.971 9.05387L44.0689 10.4652L44.3315 10.6331L44.2775 10.7175L42.9506 9.86929L43.0045 9.78489L43.1968 9.90777L44.1708 8.38389C44.2907 8.19633 44.3551 8.06799 44.3641 7.99887C44.375 7.92662 44.3477 7.86951 44.2821 7.82755C44.182 7.76361 44.051 7.77231 43.8889 7.85365C43.73 7.93699 43.5906 8.07243 43.4707 8.25999L42.6435 9.55412L42.8451 9.68299L42.7912 9.76739L41.4595 8.91623L41.5135 8.83183L41.7714 8.99667L43.9113 5.64881L43.6534 5.48397L43.7073 5.39957Z"
+                    fill="black" />
+                <path
+                    d="M50.4502 11.062L49.5223 12.1076L49.4461 12.0343C49.6704 11.5655 49.7987 11.2231 49.8312 11.0073C49.8662 10.7889 49.7982 10.5974 49.627 10.4328L49.5789 10.3866L47.0413 13.0264L47.3823 13.3542L47.3014 13.4385L45.837 12.0309L45.918 11.9466L46.259 12.2744L48.7965 9.63455L48.7444 9.58442C48.5732 9.41988 48.3752 9.36082 48.1505 9.40724C47.9283 9.45099 47.5953 9.59139 47.1513 9.82844L47.0751 9.75516L48.0831 8.78673L50.4502 11.062Z"
+                    fill="black" />
+                <path
+                    d="M51.3472 11.6477L52.1602 12.7143L50.5404 13.949C50.7121 13.8928 50.8764 13.8819 51.0332 13.9163C51.19 13.9506 51.3438 14.0667 51.4944 14.2644C51.843 14.7217 51.771 15.1382 51.2782 15.5137L49.946 16.5291L50.135 16.777L50.0553 16.8377L49.1006 15.5852L49.1803 15.5245L49.3186 15.7059L50.757 14.6096C50.934 14.4746 51.0386 14.3763 51.0708 14.3144C51.1059 14.2503 51.0998 14.1873 51.0526 14.1253C50.9807 14.0309 50.8546 13.9941 50.6744 14.0148C50.4966 14.0384 50.3191 14.1177 50.1421 14.2526L48.9205 15.1837L49.0656 15.374L48.9859 15.4347L48.0279 14.1778L48.1075 14.1171L48.2931 14.3605L51.4531 11.9519L51.2676 11.7084L51.3472 11.6477Z"
+                    fill="black" />
+                <path
+                    d="M50.804 18.2866C50.5676 17.8705 50.4962 17.4971 50.59 17.1665C50.6888 16.8373 50.9286 16.5645 51.3092 16.3483C51.693 16.1302 52.0526 16.0795 52.3877 16.1963C52.7247 16.3163 52.9958 16.557 53.2011 16.9183C53.6171 17.6505 53.4492 18.211 52.6972 18.5998L51.922 17.2354L51.7333 17.3426C51.4172 17.5222 51.2014 17.6981 51.0859 17.8704C50.9705 18.0427 50.9695 18.2288 51.0832 18.4288C51.2958 18.803 51.635 18.9345 52.101 18.8234L52.136 18.9187C51.8689 18.9894 51.625 18.9807 51.4044 18.8927C51.1855 18.808 50.9854 18.6059 50.804 18.2866ZM52.0215 17.1852L52.3047 17.6836L52.5417 17.5489C52.803 17.4005 52.9713 17.2835 53.0465 17.1981C53.1268 17.1141 53.1403 17.0253 53.0872 16.9318C53.0359 16.8415 52.9458 16.8031 52.8169 16.8165C52.6931 16.8314 52.507 16.9094 52.2586 17.0505L52.0215 17.1852Z"
+                    fill="black" />
+                <path
+                    d="M53.7477 22.3723L56.6938 22.3822L56.5525 21.9717L56.6525 21.9373L56.9296 22.7424L56.8297 22.7768L56.7445 22.5295L52.6721 22.5131L52.5199 22.0711L55.6939 19.4776L55.6106 19.2356L55.7106 19.2012L56.3029 20.9218L56.2029 20.9562L56.0743 20.5826L53.7477 22.3723Z"
+                    fill="black" />
+                <path
+                    d="M56.3464 24.2754C56.3049 24.0832 56.3241 23.9348 56.404 23.8302C56.4847 23.7293 56.5976 23.6632 56.7427 23.6319C56.8877 23.6006 57.0168 23.6183 57.1299 23.685C57.2437 23.7553 57.3202 23.8811 57.3593 24.0624C57.3985 24.2438 57.3847 24.391 57.318 24.504C57.255 24.6163 57.1436 24.6897 56.9841 24.7241C56.8281 24.7578 56.6933 24.7394 56.5794 24.6691C56.4655 24.5988 56.3879 24.4676 56.3464 24.2754ZM55.7938 23.535L56.0814 24.8677L53.5901 25.4053L53.6558 25.71L53.5579 25.7311L53.2092 24.1155L53.3071 24.0944L53.3717 24.3936L55.7651 23.877L55.6959 23.5561L55.7938 23.535Z"
+                    fill="black" />
+                <path
+                    d="M54.8867 26.8844C54.4993 26.9253 54.2432 26.9729 54.1183 27.0271C53.9972 27.081 53.9423 27.1614 53.9536 27.2684C53.9653 27.3791 54.0232 27.4681 54.1273 27.5354C54.2318 27.6065 54.3781 27.632 54.5663 27.6121L55.7727 27.4847C55.9313 27.4679 56.0627 27.4223 56.1667 27.3479C56.2708 27.2735 56.3164 27.1754 56.3035 27.0536C56.2906 26.9319 56.2007 26.8575 56.0337 26.8303C55.8667 26.8032 55.5803 26.8111 55.1744 26.854L54.8867 26.8844ZM53.8212 27.7636L54.2022 27.6618C53.8938 27.5676 53.7193 27.3286 53.6788 26.9449C53.6452 26.6276 53.7335 26.3683 53.9435 26.1671C54.1539 25.9695 54.486 25.8467 54.9398 25.7988C55.8585 25.7017 56.3564 26.0184 56.4336 26.7489C56.4679 27.0736 56.4001 27.2971 56.2303 27.4195L57.8628 27.247L57.8271 26.9094L57.9267 26.8989L58.0729 28.2824L54.022 28.7105L54.0507 28.9817L53.9511 28.9922L53.8212 27.7636Z"
+                    fill="black" />
+                <path
+                    d="M53.8566 30.7164C53.8691 30.238 54.0009 29.8815 54.252 29.6468C54.5066 29.4159 54.8528 29.3062 55.2904 29.3176C55.7317 29.3291 56.0657 29.4714 56.2924 29.7446C56.519 30.0214 56.6269 30.3675 56.616 30.7829C56.5941 31.6247 56.1607 32.0179 55.316 31.9625L55.357 30.3937L55.14 30.3881C54.7766 30.3786 54.5009 30.4178 54.3131 30.5057C54.1252 30.5936 54.0283 30.7525 54.0223 30.9824C54.0111 31.4126 54.2336 31.7005 54.69 31.846L54.6707 31.9457C54.4055 31.8682 54.2012 31.7349 54.0577 31.5456C53.9141 31.36 53.8471 31.0836 53.8566 30.7164ZM55.4681 30.4022L55.4531 30.9752L55.7257 30.9823C56.0261 30.9901 56.2306 30.9769 56.3391 30.9426C56.4512 30.9122 56.5087 30.8432 56.5115 30.7356C56.5142 30.6318 56.4569 30.5523 56.3396 30.4973C56.2259 30.4461 56.0262 30.4168 55.7407 30.4093L55.4681 30.4022Z"
+                    fill="black" />
+                <path
+                    d="M54.6773 34.153L55.1449 34.2245C55.5006 34.279 55.7622 34.2984 55.9298 34.2827C56.1004 34.2713 56.1964 34.1959 56.2177 34.0565C56.2301 33.9759 56.2163 33.9062 56.1765 33.8476C56.1398 33.7932 56.0699 33.7468 55.967 33.7085C55.807 33.6503 55.5583 33.5953 55.2209 33.5437L54.7918 33.4781C54.3921 33.4169 54.1502 33.3912 54.0662 33.4008C53.9816 33.4141 53.9116 33.4297 53.8564 33.4475C53.7622 33.4744 53.7061 33.5465 53.6882 33.6639C53.6663 33.8069 53.7345 33.913 53.8928 33.9823C54.0051 34.0332 54.2666 34.0902 54.6773 34.153ZM53.5908 33.6377C53.661 33.1793 53.8313 32.8507 54.102 32.6519C54.3726 32.4531 54.7261 32.3871 55.1625 32.4539C55.6025 32.5212 55.9209 32.6975 56.1174 32.9828C56.3171 33.2723 56.3821 33.6444 56.3125 34.0992C56.2429 34.5539 56.081 34.8763 55.8268 35.0663C55.5762 35.2569 55.2272 35.318 54.7798 35.2496C53.8446 35.1065 53.4483 34.5692 53.5908 33.6377Z"
+                    fill="black" />
+                <path d="M51.7141 38.6716L52.5895 36.0304L52.7849 36.0952L51.9095 38.7364L51.7141 38.6716Z"
+                    fill="black" />
+                <path d="M50.5309 41.1867L51.7153 38.6689L51.9016 38.7565L50.7172 41.2743L50.5309 41.1867Z"
+                    fill="black" />
+                <path d="M49.053 43.5481L50.5288 41.1893L50.7034 41.2986L49.2275 43.6573L49.053 43.5481Z"
+                    fill="black" />
+                <path d="M47.3063 45.7178L49.0513 43.5505L49.2116 43.6797L47.4667 45.8469L47.3063 45.7178Z"
+                    fill="black" />
+                <path d="M45.3157 47.665L47.3044 45.719L47.4484 45.8662L45.4597 47.8122L45.3157 47.665Z" fill="black" />
+                <path d="M43.109 49.3641L45.3138 47.6668L45.4394 47.8299L43.2346 49.5272L43.109 49.3641Z"
+                    fill="black" />
+                <path d="M40.7185 50.7891L43.109 49.3651L43.2143 49.542L40.8239 50.966L40.7185 50.7891Z" fill="black" />
+                <path d="M38.1683 51.9211L40.7117 50.7927L40.7952 50.9809L38.2518 52.1093L38.1683 51.9211Z"
+                    fill="black" />
+                <path d="M35.5146 52.7355L38.1744 51.9186L38.2349 52.1155L35.575 52.9323L35.5146 52.7355Z"
+                    fill="black" />
+                <path d="M32.7678 53.2297L35.5064 52.7375L35.5428 52.9402L32.8042 53.4323L32.7678 53.2297Z"
+                    fill="black" />
 
-          <div class="header-icons">
-            <button class="icon-32" aria-label="Notifications" title="Notifications">
-              <svg width="32" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.357 29C15.0397 29 13.8557 28.316 13.1864 27.1707C12.909 26.6933 13.069 26.0813 13.5464 25.8027C14.021 25.5253 14.6344 25.6853 14.9144 26.1627C15.5264 27.212 17.1877 27.212 17.7997 26.1627C18.0784 25.6853 18.6917 25.5253 19.1677 25.8027C19.645 26.08 19.8064 26.6933 19.5277 27.1707C18.8584 28.316 17.6744 29 16.357 29ZM27.9237 24.4333C28.0904 24.0867 28.0437 23.676 27.805 23.376C27.7797 23.3453 25.3504 20.252 25.3504 16.6667V11.9933C25.3504 7.03466 21.3157 3 16.357 3C11.3984 3 7.3637 7.03466 7.3637 11.9933V16.6667C7.3637 20.252 4.93438 23.3453 4.90904 23.376C4.67038 23.676 4.6237 24.088 4.79037 24.4333C4.95704 24.7787 5.30637 25 5.69037 25H27.0237C27.4077 25 27.757 24.7787 27.9237 24.4333ZM9.3637 16.6667V11.9933C9.3637 8.13733 12.501 5 16.357 5C20.213 5 23.3504 8.13733 23.3504 11.9933V16.6667C23.3504 19.248 24.3504 21.544 25.1744 23H7.53838C8.36371 21.544 9.3637 19.248 9.3637 16.6667Z" fill="#E8E7EB"></path>
             </svg>
-            </button>
-            <div class="profile-badge" aria-hidden="true">A</div>
-          </div>
+            <img src="https://images.pexels.com/photos/1047796/pexels-photo-1047796.jpeg" alt="Video thumbnail"
+                class="video-thumb" />
+            <div class="play-bg" id="playButton" role="button" tabindex="0" aria-label="Play / Pause">
+                <div class="icon-frame" aria-hidden="true">
+                    <svg id="playIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path
+                            d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z"
+                            fill="white"></path>
+                    </svg>
+                    <svg id="pauseIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg"
+                        style="display:none;" aria-hidden="true">
+                        <rect x="6" y="7" width="6" height="23" fill="white" rx="1"></rect>
+                        <rect x="20" y="7" width="6" height="23" fill="white" rx="1"></rect>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="player-controllers" role="group" aria-label="Player controls">
+                <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20"
+                    tabindex="0">
+                    <div class="progress-fill" id="progressFill" style="width:20%"></div>
+                </div>
+
+                <div class="video-meta">
+                    <div>Cold Little Heart</div>
+                    <div>0:47 / 1:52</div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="left-controls" aria-hidden="true">
+                        <div class="small-icon" title="Pause small">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="6" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect>
+                                <rect x="14" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect>
+                            </svg>
+                        </div>
+                        <div class="small-icon" title="Skip backward">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 6v12l-8-6 8-6zM20 6v12l-8-6 8-6z" fill="#fff"
+                                    transform="scale(0.5) translate(6,6)"></path>
+                            </svg>
+                        </div>
+                        <div class="small-icon" title="Skip forward">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 6v12l8-6-8-6zm12 0v12l8-6-8-6z" fill="#fff"
+                                    transform="scale(0.5) translate(2,6)"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="right-controls" aria-hidden="true">
+                        <div class="small-icon" title="Volume">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9v6h4l5 4V5L7 9H3z" fill="#fff" />
+                            </svg>
+                        </div>
+                        <div class="small-icon" title="Subtitles">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect x="3" y="8" width="18" height="8" rx="1" fill="#fff" opacity="0.9" />
+                            </svg>
+                        </div>
+                        <div class="small-icon" title="Fullscreen">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 14H5v5h5v-2H7v-3zm10 5h-3v2h5v-5h-2v3zM7 5h3V3H5v5h2V5zm10 0v3h2V3h-5v2h3z"
+                                    fill="#fff" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-      </div>
-    </header>
-
-    <!-- LEFT TEXT -->
-     
-    <div class="side-text" role="note">
-      <h2>watch this video</h2>
-      <p>This is a placeholder for a video with custom cursor. when user hover on it, he or she will see the interaction type following the cursor.</p>
     </div>
 
-    <!-- VIDEO CARD (unchanged) -->
-    <div class="video-wrapper" role="region" aria-label="Video player">
-      <img src="https://images.pexels.com/photos/1047796/pexels-photo-1047796.jpeg" alt="Video thumbnail" class="video-thumb" />
-      <div class="play-bg" id="playButton" role="button" tabindex="0" aria-label="Play / Pause">
-        <div class="icon-frame" aria-hidden="true">
-          <svg id="playIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z" fill="white"></path>
-          </svg>
-          <svg id="pauseIcon" width="32" height="37" viewBox="0 0 32 37" xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-hidden="true">
-            <rect x="6" y="7" width="6" height="23" fill="white" rx="1"></rect>
-            <rect x="20" y="7" width="6" height="23" fill="white" rx="1"></rect>
-          </svg>
-        </div>
-      </div>
+    <script>
+        const follower = document.getElementById('follower');
+        const videoWrapper = document.querySelector('.video-wrapper');
 
-      <div class="player-controllers" role="group" aria-label="Player controls">
-        <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20" tabindex="0">
-          <div class="progress-fill" id="progressFill" style="width:20%"></div>
-        </div>
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let rotationToMouse = 0;
+        let selfRotation = 0;
 
-        <div class="video-meta">
-          <div>Cold Little Heart</div>
-          <div>0:47 / 1:52</div>
-        </div>
+        videoWrapper.addEventListener('mousemove', (e) => {
+            // موقعیت موس نسبت به video-wrapper
+            const rect = videoWrapper.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+            const dx = mouseX - currentX;
+            const dy = mouseY - currentY;
+            rotationToMouse = Math.atan2(dy, dx) * (180 / Math.PI);
+        });
 
-        <div class="controls-row">
-          <div class="left-controls" aria-hidden="true">
-            <div class="small-icon" title="Pause small">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect><rect x="14" y="4" width="4" height="16" fill="#fff" rx="0.5"></rect></svg>
-            </div>
-            <div class="small-icon" title="Skip backward">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12l-8-6 8-6zM20 6v12l-8-6 8-6z" fill="#fff" transform="scale(0.5) translate(6,6)"></path></svg>
-            </div>
-            <div class="small-icon" title="Skip forward">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6v12l8-6-8-6zm12 0v12l8-6-8-6z" fill="#fff" transform="scale(0.5) translate(2,6)"></path></svg>
-            </div>
-          </div>
-
-          <div class="right-controls" aria-hidden="true">
-            <div class="small-icon" title="Volume">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z" fill="#fff"/></svg>
-            </div>
-            <div class="small-icon" title="Subtitles">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="8" rx="1" fill="#fff" opacity="0.9"/></svg>
-            </div>
-            <div class="small-icon" title="Fullscreen">
-              <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 14H5v5h5v-2H7v-3zm10 5h-3v2h5v-5h-2v3zM7 5h3V3H5v5h2V5zm10 0v3h2V3h-5v2h3z" fill="#fff"/></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    (function(){
-      const btn = document.getElementById('playButton');
-      const play = document.getElementById('playIcon');
-      const pause = document.getElementById('pauseIcon');
-      let playing = false;
-      function toggle(){
-        playing = !playing;
-        if(playing){ play.style.display='none'; pause.style.display='block'; }
-        else { play.style.display='block'; pause.style.display='none'; }
-      }
-      btn.addEventListener('click', toggle);
-      btn.addEventListener('keydown', e => { if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); }});
-    })();
-  </script>
+        function animate() {
+            currentX += (mouseX - currentX) * 0.15;
+            currentY += (mouseY - currentY) * 0.15;
+            selfRotation += 2;
+            // مرکز SVG زیر موس
+            follower.style.left = `${currentX - 30}px`;
+            follower.style.top = `${currentY + 30}px`;
+            follower.style.transform = `rotate(${rotationToMouse}deg) rotate(${selfRotation}deg)`;
+            requestAnimationFrame(animate);
+        }
+        animate();
+        (function () {
+            const btn = document.getElementById('playButton');
+            const play = document.getElementById('playIcon');
+            const pause = document.getElementById('pauseIcon');
+            let playing = false;
+            function toggle() {
+                playing = !playing;
+                if (playing) { play.style.display = 'none'; pause.style.display = 'block'; }
+                else { play.style.display = 'block'; pause.style.display = 'none'; }
+            }
+            btn.addEventListener('click', toggle);
+            btn.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); } });
+        })();
+    </script>
 </body>
+
 </html>
