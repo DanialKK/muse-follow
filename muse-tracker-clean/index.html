@@ -9,8 +9,8 @@
     
 </head>
 <body class="overflow-hidden relative w-screen h-screen">
-    <header class="flex relative z-10 justify-center items-center px-28 py-6 w-full backdrop-blur-[10px] bg-zinc-800 bg-opacity-80 max-md:px-6 max-md:py-4 max-sm:px-4 max-sm:py-3" >
-        <div class="flex justify-between items-center w-full max-w-[1200px]">
+    <header class="flex relative z-10 justify-center items-center py-5 px-9 backdrop-blur-[10px] bg-zinc-800 bg-opacity-70" >
+        <div class="flex justify-between items-center w-full max-w-[1280px]">
             <div class="flex gap-24 items-center max-md:gap-10 max-sm:gap-5">
                 <div class="flex gap-2 items-center">
                     <svg width="112" height="42" viewBox="0 0 112 42" fill="none" xmlns="http://www.w3.org/2000/svg" class="shrink-0">
@@ -40,7 +40,6 @@
                     </svg>
                 </div>
                 <nav class="flex gap-4 items-center max-sm:hidden" id="navigation">
-                    <!-- Navigation items will be populated by JavaScript -->
                 </nav>
             </div>
             <div class="flex gap-8 items-center max-md:gap-4">
@@ -66,33 +65,34 @@
         </div>
     </header>
 
-    <main class="flex justify-center items-center p-10 w-full h-[calc(100vh_-_88px)] max-md:flex-col max-md:p-5 max-sm:p-4">
-        <section class="mr-10 w-[400px] max-md:mb-5 max-md:w-full max-md:text-center">
+    <main class="flex justify-center items-center w-full h-[calc(100vh_-_88px)]">
+        <section class="mr-1 w-[400px] max-md:mb-5 max-md:w-full max-md:text-center">
             <h1 class="mb-4 text-2xl font-semibold text-center text-white capitalize">
                 Watch This Video
             </h1>
-            <p class="text-lg font-light leading-snug text-center text-white capitalize">
-                This is a placeholder for a video with custom cursor. When user hover on it, he or she will see the interaction type following the cursor.
-            </p>
+            <div data-layer="This is a placeholder for a video with custom cursor. when user hover on it, he or she will see the interaction type following the cursor." class="ThisIsAPlaceholderForAVideoWithCustomCursorWhenUserHoverOnItHeOrSheWillSeeTheInteractionTypeFollowingTheCursor w-96 text-center justify-start text-white text-lg font-light font-['Inter'] capitalize">This is a placeholder for a video with custom cursor. when user hover on it, he or she will see the interaction type following the cursor.</div>
         </section>
 
-        <section class="overflow-hidden relative bg-black rounded-3xl h-[338px] w-[600px] max-md:w-full max-md:h-auto max-md:aspect-[16/9] max-md:max-w-[600px]">
+        <section id="player" class="overflow-hidden relative bg-black rounded-3xl w-[816px] h-[459px]">
             <img alt="Video thumbnail showing musician playing acoustic guitar" src="https://images.pexels.com/photos/1047796/pexels-photo-1047796.jpeg" class="object-cover overflow-hidden size-full">
 
-            <div class="flex absolute inset-x-0 bottom-0 flex-col gap-5 p-5 backdrop-blur-[0.5px]">
-                <div class="flex justify-center items-center mb-5">
+            <div class="flex absolute inset-x-0 bottom-0 flex-col p-2 backdrop-blur-[0.5px]">
+                <div class="flex justify-center pb-20 items-center mb-5">
                     <button class="play-btn flex justify-center items-center w-24 h-24 rounded-full border border-solid transition-all cursor-pointer backdrop-blur-[10px] bg-black bg-opacity-30 border-white border-opacity-20 duration-200 ease-in-out" id="playButton" tabindex="0">
-                        <svg id="playIcon" width="32" height="37" viewBox="0 0 32 37" fill="none">
-                            <path d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z" fill="white"></path>
+                        <svg id="playIcon" class="block" width="32" height="37" viewBox="0 0 32 37" fill="none">
+                            <path d="M0 3.1599C0.000666811 0.851702 2.49934 -0.591865 4.49902 0.561264L30.4961 15.5564C32.4974 16.7107 32.4971 19.599 30.4961 20.7536L4.49902 35.7488C2.49903 36.9024 -1.0102e-07 35.459 0 33.1501V3.1599Z" fill="white"/>
                         </svg>
-                        <svg id="pauseIcon" width="32" height="32" viewBox="0 0 32 32" fill="none" style="display: none;">
-                            <rect x="8" y="6" width="6" height="20" fill="white" rx="1"></rect>
-                            <rect x="18" y="6" width="6" height="20" fill="white" rx="1"></rect>
+                        <svg id="pauseIcon" class="block" width="32" height="37" viewBox="0 0 32 37" fill="none" style="display: none;">
+                            <rect x="8" y="6" width="6" height="25" fill="white" rx="1"/>
+                            <rect x="18" y="6" width="6" height="25" fill="white" rx="1"/>
                         </svg>
                     </button>
+                    
+                    
                 </div>
                 
-                <div class="flex justify-between items-end">
+                            <rect x="18" y="6" width="6" height="20" fill="white" rx="1"></rect>
+                <div class="flex mr-2 ml-2 p-1 justify-between items-end">
                   <div>
                       <h3 class="m-0 text-xs text-white">Cold Little Heart</h3>
                   </div>
@@ -103,24 +103,24 @@
                   </div>
                 </div>
 
-                <div role="progressbar" aria-label="Video progress" class="relative rounded cursor-pointer bg-gray-200 bg-opacity-40 h-[5px]" id="progressBar" tabindex="0">
+                <div role="progressbar" aria-label="Video progress" class="relative m-2 rounded cursor-pointer bg-gray-200 bg-opacity-40 h-[5px]" id="progressBar" tabindex="0">
                     <div class="h-full rounded bg-zinc-700 duration-100 ease-in-out transition-[width]" id="progressFill"></div>
                 </div>
                 
-                <div class="flex justify-between items-center">
+                <div class="flex m-3 p-rl-2 justify-between items-center">
                     <div class="flex gap-1 items-center" id="leftControls">
-                        <!-- Left controls will be populated by JavaScript -->
+                       
                     </div>
                     <div class="flex gap-1 items-center" id="rightControls">
-                        <!-- Right controls will be populated by JavaScript -->
+        
                     </div>
                 </div>
             </div>
+                <div id="follower" style="display: none">
+                    <img src="./MC.png"  width="60" height="60">
+                </div>
         </section>
     </main>
-    <div id="follower">
-    <img src="./MC.svg"  width="60" height="60">
-    </div>
     <script src="./scripts.js"></script>
 </body>
 </html>
